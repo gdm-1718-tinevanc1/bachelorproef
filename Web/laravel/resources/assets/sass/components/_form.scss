@@ -1,0 +1,42 @@
+/* label focus color */
+.input-field input:focus + label {
+  color: $primary-color !important;
+}
+/* label underline focus color */
+.row .input-field input:focus {
+  border-bottom: 1px solid $primary-color !important;
+  box-shadow: 0 1px 0 0 $primary-color !important
+}
+
+.input-field textarea:focus + label {
+  color: $primary-color !important;
+}
+/* label underline focus color */
+.row .input-field textarea:focus {
+  border-bottom: 1px solid $primary-color !important;
+  box-shadow: 0 1px 0 0 $primary-color !important
+}
+
+
+input:not(.browser-default):focus{
+  border-bottom: 1px solid $primary-color !important;
+  box-shadow: 0 1px 0 0 $primary-color !important
+}
+
+
+select:focus {
+  outline: none;
+}
+
+.input--search{
+  margin-top: 25px;
+  text-align: right;
+  input, select{
+    width: 200px !important;
+    display: inline-block;
+  }
+  .btn{
+    margin-left: 20px;
+  }
+}
+

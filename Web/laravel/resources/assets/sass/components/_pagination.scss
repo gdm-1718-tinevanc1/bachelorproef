@@ -1,0 +1,11 @@
+ul.pagination{
+  float: right;
+}
+
+.pagination li.active{
+  background-color: $primary-color;
+  line-height: 2;
+  color: #fff;
+  width: 20px;
+  
+}
