@@ -1,0 +1,14 @@
+
+.tabs{
+    margin-top: 20px;
+
+    .tab{
+        border-bottom: $primary-color;
+        a{
+            color: $primary-color;
+        }
+    }
+    .indicator{
+        background-color: $primary-color !important;
+    }
+}

@@ -1,0 +1,1657 @@
+<div class="alert--softdelete modal">
+  <h4>Ben je zeker dat je je profiel wil verwijderen?</h4>
+  <p>Bij het verwijderen worden u gegevens niet 100% verwijderd en kunnen deze terug opgehaald worden. Maar uw account is nergens meer zichtbaar.</p>
+  <p>Indien u uw gegevens volledig wilt verwijderen uit onze database, kunt u kiezen voor permanent. Let op alles is hierbij permanent verwijderd!</p>
+  <a class="waves-effect waves-light btn" (click)="hardDelete()">Permanent verwijderen</a>
+  <a class="waves-effect waves-light btn" (click)="deleteCancel()">Annuleren</a>
+  <a class="waves-effect waves-light btn" (click)="softDelete()">Verwijderen</a>
+</div>
+
+<div class="row">
+  <div class="col s12">
+    <ul class="tabs">
+      <li class="tab col s6">
+        <a href="#personal">Persoonlijke gegevens</a>
+      </li>
+      <li [hidden]="role != 'Behandelaar'" class="tab col s6">
+        <a href="#practitioner"> Gegevens behandelaar</a>
+      </li>
+      <li [hidden]="role == 'Behandelaar'" class="tab col s6">
+        <a href="#medical">Medische gegevens</a>
+      </li>
+    </ul>
+  </div>
+
+
+  <div id="personal" class="col s12 tab__body">
+    <form action="">
+      <h5>Persoonlijke gegevens</h5>
+      <div class="input-field">
+        <input placeholder="Gebruikersnaam" id="username" name="username" type="text" class="validate" [(ngModel)]="creds.username">
+        <label for="username">Gebruikersnaam</label>
+      </div>
+
+      <div class="input-field">
+        <input placeholder="E-mailadres" id="email" name="email" type="text" class="validate" [(ngModel)]="creds.email">
+        <label for="email">E-mailadres</label>
+      </div>
+
+      <div class="input-field">
+        <input placeholder="Voornaam" id="firstname" name="firstname" type="text" class="validate" [(ngModel)]="creds.profile.firstname">
+        <label for="firstname">Voornaam</label>
+      </div>
+
+      <div class="input-field">
+        <input placeholder="Achternaam" id="lastname" name="lastname" type="text" class="validate" [(ngModel)]="creds.profile.lastname">
+        <label for="lastname">Achternaam</label>
+      </div>
+
+      <div class="input-field">
+        <input placeholder="Telefoonnummer" name="phonenumber" id="phonenumber" type="text" class="validate" [(ngModel)]="creds.profile.phonenumber">
+        <label for="phonenumber">Telefoonnummer</label>
+      </div>
+
+      <div class="input-field">
+        <input placeholder="Stad" id="city" name="city" type="text" class="validate" [(ngModel)]="creds.profile.location.city">
+        <label for="city">Stad</label>
+      </div>
+
+      <label for="country">Land</label>
+      <select id="country" name="country" [(ngModel)]="creds.profile.location.country_id">
+        <option *ngFor="let country of countries" value="{{country.id}}">{{country.name}}</option>
+      </select>
+    </form>
+  </div>
+  <div id="practitioner" class="col s12 tab__body">
+    <form action="">
+        <h5>Gegevens behandelaar</h5>
+        <div class="input-field">
+          <input placeholder="Riviz-nummer" name="rizivnumber" id="rizivnumber" type="text" class="validate" [(ngModel)]="creds.profile.rizivnumber">
+          <label for="rizivnumber">Riviz-nummer</label>
+        </div>
+
+        <div class="input-field">
+          <input placeholder="Functie" name="function" id="function" type="text" class="validate" [(ngModel)]="creds.profile.function">
+          <label for="function">Functie</label>
+        </div>
+    </form>
+  </div>
+  <div id="medical" class="col s12 tab__body">
+    <form action="">
+      <h5>Medische gegevens</h5>
+      <div>
+        <label for="howfar">Hoe ver kan je gemiddeld stappen?</label>
+        <select id="howfar" name="howfar" [(ngModel)]="creds.profile.profile_medical.howfar">
+          <option value="5km_without">Ik stap gemakkelijk meer dan 5 km, zonder hulpmiddelen</option>
+          <option value="5km_with">Ik stap gemakkelijk meer dan 5 km, maar wel met hulpmiddelen (bv. krukken, steun van een andere persoon, ...)</option>
+          <option value="500m_without">Ik kan zonder hulpmiddelen (bv. krukken, ...) de afstanden aan om bv. te voet boodschappen te doen, binnen mijn
+            dorp/stad rond te stappen (ca. 500m, ca. 4 straten ver)</option>
+          <option value="500m_with">Ik kan met hulpmiddelen (bv. krukken, steun van een andere persoon, ..) de afstanden aan om bv. te voet boodschappen
+            te doen, binnen mijn dorp/stad te stappen (ca. 500m, ca. 4 straten ver)</option>
+          <option value="100m_without">Ik kan zonder hulpmiddelen (bv. krukken, steun van een andere persoon, ...) een blokje om (ca. 100-200m)</option>
+          <option value="100m_with">Ik kan met hulpmiddelen (bv. krukken, steun van een andere persoon, ...) een blokje om (ca. 100 - 200m)</option>
+          <option value="10m_without">Ik kan zonder hulpmiddelen binnenshuis stappen (ca. 10 - 15m)</option>
+          <option value="10m_with">Ik kan met hulpmiddelen (bv. krukken, mezelf ergens aan vasthouden, steun van een andere persoon, ...) binnenshuis
+            stappen (ca. 10-15m)</option>
+          <option value="2m_without">Ik kan zonder hulpmiddelen maar enkele stappen zetten (ca. 2-5m)</option>
+          <option value="2m_with">Ik kan met hulpmiddelen (bv. krukken, mezelf ergens aan vasthouden, steun van een andere persoon...) maar enkele
+            stappen zetten (ca. 2-5m)</option>
+          <option value="no">Ik kan niet stappen</option>
+        </select>
+      </div>
+      <br>
+      <div>
+        <label for="howfar">Gebruikt u deze hulpmiddelen regelmatig?</label>
+        <table>
+          <tr>
+            <th></th>
+            <th>Neen</th>
+            <th>Dagelijks</th>
+            <th>Enkele keren per week</th>
+            <th>Enkele keren per maand</th>
+            <th>Sporadisch, heel af en toe</th>
+
+          </tr>
+
+          <tr>
+            <th>Rolstoel</th>
+            <td>
+              <input id="wheelchair_never" name="wheelchair" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_walktool.wheelchair" />
+              <label for="wheelchair_never"></label>
+
+            </td>
+            <td>
+              <input id="wheelchair_everyday" name="wheelchair" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_walktool.wheelchair"  />
+              <label for="wheelchair_everyday"></label>
+            </td>
+            <td>
+              <input id="wheelchair_weekly" name="wheelchair" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_walktool.wheelchair"  />
+              <label for="wheelchair_weekly"></label>
+            </td>
+            <td>
+              <input id="wheelchair_monthly" name="wheelchair" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_walktool.wheelchair" />
+              <label for="wheelchair_monthly"></label>
+            </td>
+            <td>
+              <input id="wheelchair_rarely" name="wheelchair" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_walktool.wheelchair" />
+              <label for="wheelchair_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Elektrische rolstoel</th>
+            <td>
+              <input id="elecwheelchair_never" name="elecwheelchair" value="never" type="radio" [(ngModel)]="creds.profile.profile_medical.profile_walktool.elecwheelchair" />
+              <label for="elecwheelchair_never"></label>
+            </td>
+            <td>
+              <input id="elecwheelchair_everyday" name="elecwheelchair" value="everyday" type="radio" [(ngModel)]="creds.profile.profile_medical.profile_walktool.elecwheelchair" />
+              <label for="elecwheelchair_everyday"></label>
+            </td>
+            <td>
+              <input id="elecwheelchair_weekly" name="elecwheelchair"  value="weekly" type="radio" [(ngModel)]="creds.profile.profile_medical.profile_walktool.elecwheelchair" />
+              <label for="elecwheelchair_weekly"></label>
+            </td>
+            <td>
+              <input id="elecwheelchair_monthly" name="elecwheelchair" value="monthly" type="radio" [(ngModel)]="creds.profile.profile_medical.profile_walktool.elecwheelchair" />
+              <label for="elecwheelchair_monthly"></label>
+            </td>
+            <td>
+              <input id="elecwheelchair_rarely" name="elecwheelchair" value="rarely" type="radio" [(ngModel)]="creds.profile.profile_medical.profile_walktool.elecwheelchair" />
+              <label for="elecwheelchair_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Loopfiets</th>
+            <td>
+              <input id="balancebike_never" name="balancebike" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_walktool.balancebike" />
+              <label for="balancebike_never"></label>
+            </td>
+            <td>
+              <input id="balancebike_everyday" name="balancebike" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_walktool.balancebike" />
+              <label for="balancebike_everyday"></label>
+            </td>
+            <td>
+              <input id="balancebike_weekly" name="balancebike" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_walktool.balancebike" />
+              <label for="balancebike_weekly"></label>
+            </td>
+            <td>
+              <input id="balancebike_monthly" name="balancebike" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_walktool.balancebike" />
+              <label for="balancebike_monthly"></label>
+            </td>
+            <td>
+              <input id="balancebike_rarely" name="balancebike" type="radio" value="barely" [(ngModel)]="creds.profile.profile_medical.profile_walktool.balancebike" />
+              <label for="balancebike_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+
+            <th>Krukken of wandelstok</th>
+            <td>
+              <input id="crutch_never" name="crutch" type="radio"  value="never" [(ngModel)]="creds.profile.profile_medical.profile_walktool.crutch"  />
+              <label for="crutch_never"></label>
+            </td>
+            <td>
+              <input id="crutch_everyday" name="crutch" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_walktool.crutch"  />
+              <label for="crutch_everyday"></label>
+            </td>
+            <td>
+              <input id="crutch_weekly" name="crutch" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_walktool.crutch"  />
+              <label for="crutch_weekly"></label>
+            </td>
+            <td>
+              <input id="crutch_monthly" name="crutch" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_walktool.crutch"  />
+              <label for="crutch_monthly"></label>
+            </td>
+            <td>
+              <input id="crutch_rarely" name="crutch" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_walktool.crutch"  />
+              <label for="crutch_rarely"></label>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <div>
+        <label for="howfar">Gebruikt u deze braces of splints regelmatig?</label>
+        <table>
+          <tr>
+            <th></th>
+            <th>Neen</th>
+            <th>Dagelijks</th>
+            <th>Enkele keren per week</th>
+            <th>Enkele keren per maand</th>
+            <th>Sporadisch, heel af en toe</th>
+
+          </tr>
+          <tr> 
+            <th>Nekkraag</th>
+            <td>
+              <input id="neckcollar_never" name="neckcollar" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.neckcollar" />
+              <label for="neckcollar_never"></label>
+            </td>
+            <td>
+              <input id="neckcollar_everyday" name="neckcollar" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.neckcollar"  />
+              <label for="neckcollar_everyday"></label>
+            </td>
+            <td>
+              <input id="neckcollar_weekly" name="neckcollar" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.neckcollar"  />
+              <label for="neckcollar_weekly"></label>
+            </td>
+            <td>
+              <input id="neckcollar_monthly" name="neckcollar" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.neckcollar"  />
+              <label for="neckcollar_monthly"></label>
+            </td>
+            <td>
+              <input id="neckcollar_rarely" name="neckcollar" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.neckcollar"  />
+              <label for="neckcollar_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Schouderbrace</th>
+            <td>
+              <input id="shoulderbrace_never" name="shoulderbrace" type="radio" value="never"  [(ngModel)]="creds.profile.profile_medical.profile_brace.shoulderbrace" />
+              <label for="shoulderbrace_never"></label>
+            </td>
+            <td>
+              <input id="shoulderbrace_everyday" name="shoulderbrace" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.shoulderbrace" />
+              <label for="shoulderbrace_everyday"></label>
+            </td>
+            <td>
+              <input id="shoulderbrace_weekly" name="shoulderbrace" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.shoulderbrace" />
+              <label for="shoulderbrace_weekly"></label>
+            </td>
+            <td>
+              <input id="shoulderbrace_monthly" name="shoulderbrace" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.shoulderbrace" />
+              <label for="shoulderbrace_monthly"></label>
+            </td>
+            <td>
+              <input id="shoulderbrace_rarely" name="shoulderbrace" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.shoulderbrace" />
+              <label for="shoulderbrace_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Drukkledij bovenlichaam</th>
+            <td>
+              <input id="pressure_upper_never" name="pressure_upper" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_upper" />
+              <label for="pressure_upper_never"></label>
+            </td>
+            <td>
+              <input id="pressure_upper_everyday" name="pressure_upper" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_upper" />
+              <label for="pressure_upper_everyday"></label>
+            </td>
+            <td>
+              <input id="pressure_upper_weekly" name="pressure_upper" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_upper" />
+              <label for="pressure_upper_weekly"></label>
+            </td>
+            <td>
+              <input id="pressure_upper_monthly" name="pressure_upper" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_upper" />
+              <label for="pressure_upper_monthly"></label>
+            </td>
+            <td>
+              <input id="pressure_upper_rarely" name="pressure_upper" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_upper" />
+              <label for="pressure_upper_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Drukkledij onderlichaam</th>
+            <td>
+              <input id="pressure_under_never" name="pressure_under" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_under" />
+              <label for="pressure_under_never"></label>
+            </td>
+            <td>
+              <input id="pressure_under_everyday" name="pressure_under" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_under" />
+              <label for="pressure_under_everyday"></label>
+            </td>
+            <td>
+              <input id="pressure_under_weekly" name="pressure_under" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_under" />
+              <label for="pressure_under_weekly"></label>
+            </td>
+            <td>
+              <input id="pressure_under_monthly" name="pressure_under" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_under" />
+              <label for="pressure_under_monthly"></label>
+            </td>
+            <td>
+              <input id="pressure_under_rarely" name="pressure_under" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.pressure_under" />
+              <label for="pressure_under_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Kniebrace</th>
+            <td>
+              <input id="kneebrace_never" name="kneebrace" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.kneebrace"  />
+              <label for="kneebrace_never"></label>
+            </td>
+            <td>
+              <input id="kneebrace_everyday" name="kneebrace" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.kneebrace"  />
+              <label for="kneebrace_everyday"></label>
+            </td>
+            <td>
+              <input id="kneebrace_weekly" name="kneebrace" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.kneebrace"  />
+              <label for="kneebrace_weekly"></label>
+            </td>
+            <td>
+              <input id="kneebrace_monthly" name="kneebrace" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.kneebrace"  />
+              <label for="kneebrace_monthly"></label>
+            </td>
+            <td>
+              <input id="kneebrace_rarely" name="kneebrace" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.kneebrace"  />
+              <label for="kneebrace_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Enkelbrace</th>
+            <td>
+              <input id="anklebrace_never" name="anklebrace" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.anklebrace"  />
+              <label for="anklebrace_never"></label>
+            </td>
+            <td>
+              <input id="anklebrace_everyday" name="anklebrace" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.anklebrace"  />
+              <label for="anklebrace_everyday"></label>
+            </td>
+            <td>
+              <input id="anklebrace_weekly" name="anklebrace" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.anklebrace"  />
+              <label for="anklebrace_weekly"></label>
+            </td>
+            <td>
+              <input id="anklebrace_monthly" name="anklebrace" type="radio" value="monthly"  [(ngModel)]="creds.profile.profile_medical.profile_brace.anklebrace" />
+              <label for="anklebrace_monthly"></label>
+            </td>
+            <td>
+              <input id="anklebrace_rarely" name="anklebrace" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.anklebrace"  />
+              <label for="anklebrace_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Steunzolen</th>
+            <td>
+              <input id="supportsoles_never" name="supportsoles" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.supportsoles"  />
+              <label for="supportsoles_never"></label>
+            </td>
+            <td>
+              <input id="supportsoles_everyday" name="supportsoles" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.supportsoles"  />
+              <label for="supportsoles_everyday"></label>
+            </td>
+            <td>
+              <input id="supportsoles_weekly" name="supportsoles" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.supportsoles"  />
+              <label for="supportsoles_weekly"></label>
+            </td>
+            <td>
+              <input id="supportsoles_monthly" name="supportsoles" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.supportsoles"  />
+              <label for="supportsoles_monthly"></label>
+            </td>
+            <td>
+              <input id="supportsoles_rarely" name="supportsoles" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.supportsoles"  />
+              <label for="supportsoles_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+
+            <th>Silversplints voor vingers</th>
+            <td>
+              <input id="silversplints_never" name="silversplints" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.silversplints" />
+              <label for="silversplints_never"></label>
+            </td>
+            <td>
+              <input id="silversplints_everyday" name="silversplints" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.silversplints" />
+              <label for="silversplints_everyday"></label>
+            </td>
+            <td>
+              <input id="silversplints_weekly" name="silversplints" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.silversplints" />
+              <label for="silversplints_weekly"></label>
+            </td>
+            <td>
+              <input id="silversplints_monthly" name="silversplints" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.silversplints" />
+              <label for="silversplints_monthly"></label>
+            </td>
+            <td>
+              <input id="silversplints_rarely" name="silversplints" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.silversplints" />
+              <label for="silversplints_rarely"></label>
+            </td>
+          </tr>
+
+          <tr>
+
+            <th>Polsbrace</th>
+            <td>
+              <input id="wristbrace_never" name="wristbrace" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.wristbrace" />
+              <label for="wristbrace_never"></label>
+            </td>
+            <td>
+              <input id="wristbrace_everyday" name="wristbrace" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.wristbrace" />
+              <label for="wristbrace_everyday"></label>
+            </td>
+            <td>
+              <input id="wristbrace_weekly" name="wristbrace" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.wristbrace" />
+              <label for="wristbrace_weekly"></label>
+            </td>
+            <td>
+              <input id="wristbrace_monthly" name="wristbrace" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.wristbrace" />
+              <label for="wristbrace_monthly"></label>
+            </td>
+            <td>
+              <input id="wristbrace_rarely" name="wristbrace" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.wristbrace" />
+              <label for="wristbrace_rarely"></label>
+            </td>
+          </tr>
+
+          <tr>
+
+            <th>Korset</th>
+            <td>
+              <input id="corset_never" name="corset" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.corset" />
+              <label for="corset_never"></label>
+            </td>
+            <td>
+              <input id="corset_everyday" name="corset" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.corset" />
+              <label for="corset_everyday"></label>
+            </td>
+            <td>
+              <input id="corset_weekly" name="corset" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.corset" />
+              <label for="corset_weekly"></label>
+            </td>
+            <td>
+              <input id="corset_monthly" name="corset" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.corset" />
+              <label for="corset_monthly"></label>
+            </td>
+            <td>
+              <input id="corset_rarely" name="corset" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.corset" />
+              <label for="corset_rarely"></label>
+            </td>
+          </tr>
+
+          <tr>
+
+            <th>Band voor de lage rug</th>
+            <td>
+              <input id="bandlowback_never" name="bandlowback" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.bandlowback" />
+              <label for="bandlowback_never"></label>
+            </td>
+            <td>
+              <input id="bandlowback_everyday" name="bandlowback" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.bandlowback" />
+              <label for="bandlowback_everyday"></label>
+            </td>
+            <td>
+              <input id="bandlowback_weekly" name="bandlowback" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.bandlowback" />
+              <label for="bandlowback_weekly"></label>
+            </td>
+            <td>
+              <input id="bandlowback_monthly" name="bandlowback" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.bandlowback" />
+              <label for="bandlowback_monthly"></label>
+            </td>
+            <td>
+              <input id="bandlowback_rarely" name="bandlowback" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.bandlowback" />
+              <label for="bandlowback_rarely"></label>
+            </td>
+          </tr>
+          <tr>
+
+            <th>Steunkousen</th>
+            <td>
+              <input id="stockings_never" name="stockings" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_brace.stockings" />
+              <label for="stockings_never"></label>
+            </td>
+            <td>
+              <input id="stockings_everyday" name="stockings" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_brace.stockings" />
+              <label for="stockings_everyday"></label>
+            </td>
+            <td>
+              <input id="stockings_weekly" name="stockings" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_brace.stockings" />
+              <label for="stockings_weekly"></label>
+            </td>
+            <td>
+              <input id="stockings_monthly" name="stockings" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_brace.stockings" />
+              <label for="stockings_monthly"></label>
+            </td>
+            <td>
+              <input id="stockings_rarely" name="stockings" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_brace.stockings" />
+              <label for="stockings_rarely"></label>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <div>
+        <label for="howfar">Pijnlijke gewrichten in de voorbije 4weken?</label>
+        <table>
+          <tr>
+            <th></th>
+            <th>Geen pijn</th>
+            <th>Milde pijn</th>
+            <th>Matige pijn</th>
+            <th>Ernstige pijn</th>
+          </tr>
+          <tr>
+            <th>Schoudergewricht links</th>
+            <td>
+              <input id="shoulderjoint_left_none" name="shoulderjoint_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_left" />
+              <label for="shoulderjoint_left_none"></label>
+            </td>
+            <td>
+              <input id="shoulderjoint_left_mild" name="shoulderjoint_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_left" />
+              <label for="shoulderjoint_left_mild"></label>
+            </td>
+            <td>
+              <input id="shoulderjoint_left_moderate" name="shoulderjoint_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_left" />
+              <label for="shoulderjoint_left_moderate"></label>
+            </td>
+            <td>
+              <input id="shoulderjoint_left_severe" name="shoulderjoint_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_left" />
+              <label for="shoulderjoint_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Schoudergewricht rechts</th>
+            <td>
+              <input id="shoulderjoint_right_none" name="shoulderjoint_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_right" />
+              <label for="shoulderjoint_right_none"></label>
+            </td>
+            <td>
+              <input id="shoulderjoint_right_mild" name="shoulderjoint_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_right" />
+              <label for="shoulderjoint_right_mild"></label>
+            </td>
+            <td>
+              <input id="shoulderjoint_right_moderate" name="shoulderjoint_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_right" />
+              <label for="shoulderjoint_right_moderate"></label>
+            </td>
+            <td>
+              <input id="shoulderjoint_right_severe" name="shoulderjoint_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderjoint_right" />
+              <label for="shoulderjoint_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Schoudergordel links</th>
+            <td>
+              <input id="shoulderbelt_left_none" name="shoulderbelt_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_left" />
+              <label for="shoulderbelt_left_none"></label>
+            </td>
+            <td>
+              <input id="shoulderbelt_left_mild" name="shoulderbelt_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_left" />
+              <label for="shoulderbelt_left_mild"></label>
+            </td>
+            <td>
+              <input id="shoulderbelt_left_moderate" name="shoulderbelt_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_left" />
+              <label for="shoulderbelt_left_moderate"></label>
+            </td>
+            <td>
+              <input id="shoulderbelt_left_severe" name="shoulderbelt_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_left" />
+              <label for="shoulderbelt_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Schoudergordel rechts</th>
+            <td>
+              <input id="shoulderbelt_right_none" name="shoulderbelt_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_right" />
+              <label for="shoulderbelt_right_none"></label>
+            </td>
+            <td>
+              <input id="shoulderbelt_right_mild" name="shoulderbelt_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_right" />
+              <label for="shoulderbelt_right_mild"></label>
+            </td>
+            <td>
+              <input id="shoulderbelt_right_moderate" name="shoulderbelt_right" type="radio" value="moderate"  [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_right"/>
+              <label for="shoulderbelt_right_moderate"></label>
+            </td>
+            <td>
+              <input id="shoulderbelt_right_severe" name="shoulderbelt_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.shoulderbelt_right" />
+              <label for="shoulderbelt_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Elleboog links</th>
+            <td>
+              <input id="elbow_left_none" name="elbow_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_left"  />
+              <label for="elbow_left_none"></label>
+            </td>
+            <td>
+              <input id="elbow_left_mild" name="elbow_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_left"  />
+              <label for="elbow_left_mild"></label>
+            </td>
+            <td>
+              <input id="elbow_left_moderate" name="elbow_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_left"  />
+              <label for="elbow_left_moderate"></label>
+            </td>
+            <td>
+              <input id="elbow_left_severe" name="elbow_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_left"  />
+              <label for="elbow_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Elleboog rechts</th>
+            <td>
+              <input id="elbow_right_none" name="elbow_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_right"  />
+              <label for="elbow_right_none"></label>
+            </td>
+            <td>
+              <input id="elbow_right_mild" name="elbow_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_right"  />
+              <label for="elbow_right_mild"></label>
+            </td>
+            <td>
+              <input id="elbow_right_moderate" name="elbow_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_right"  />
+              <label for="elbow_right_moderate"></label>
+            </td>
+            <td>
+              <input id="elbow_right_severe" name="elbow_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.elbow_right"  />
+              <label for="elbow_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Bovenarm links</th>
+            <td>
+              <input id="upperarm_left_none" name="upperarm_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_left"  />
+              <label for="upperarm_left_none"></label>
+            </td>
+            <td>
+              <input id="upperarm_left_mild" name="upperarm_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_left"  />
+              <label for="upperarm_left_mild"></label>
+            </td>
+            <td>
+              <input id="upperarm_left_moderate" name="upperarm_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_left"  />
+              <label for="upperarm_left_moderate"></label>
+            </td>
+            <td>
+              <input id="upperarm_left_severe" name="upperarm_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_left"  />
+              <label for="upperarm_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Bovenarm rechts</th>
+            <td>
+              <input id="upperarm_right_none" name="upperarm_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_right"  />
+              <label for="upperarm_right_none"></label>
+            </td>
+            <td>
+              <input id="upperarm_right_mild" name="upperarm_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_right"  />
+              <label for="upperarm_right_mild"></label>
+            </td>
+            <td>
+              <input id="upperarm_right_moderate" name="upperarm_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_right"  />
+              <label for="upperarm_right_moderate"></label>
+            </td>
+            <td>
+              <input id="upperarm_right_severe" name="upperarm_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperarm_right"  />
+              <label for="upperarm_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Onderarm links</th>
+            <td>
+              <input id="underarm_left_none" name="underarm_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_left"  />
+              <label for="underarm_left_none"></label>
+            </td>
+            <td>
+              <input id="underarm_left_mild" name="underarm_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_left"  />
+              <label for="underarm_left_mild"></label>
+            </td>
+            <td>
+              <input id="underarm_left_moderate" name="underarm_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_left"  />
+              <label for="underarm_left_moderate"></label>
+            </td>
+            <td>
+              <input id="underarm_left_severe" name="underarm_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_left"  />
+              <label for="underarm_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Onderarm rechts</th>
+            <td>
+              <input id="underarm_right_none" name="underarm_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_right"  />
+              <label for="underarm_right_none"></label>
+            </td>
+            <td>
+              <input id="underarm_right_mild" name="underarm_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_right"  />
+              <label for="underarm_right_mild"></label>
+            </td>
+            <td>
+              <input id="underarm_right_moderate" name="underarm_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_right"  />
+              <label for="underarm_right_moderate"></label>
+            </td>
+            <td>
+              <input id="underarm_right_severe" name="underarm_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.underarm_right"  />
+              <label for="underarm_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Polsgewricht links</th>
+            <td>
+              <input id="wristjoint_left_none" name="wristjoint_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_left"  />
+              <label for="wristjoint_left_none"></label>
+            </td>
+            <td>
+              <input id="wristjoint_left_mild" name="wristjoint_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_left"  />
+              <label for="wristjoint_left_mild"></label>
+            </td>
+            <td>
+              <input id="wristjoint_left_moderate" name="wristjoint_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_left"  />
+              <label for="wristjoint_left_moderate"></label>
+            </td>
+            <td>
+              <input id="wristjoint_left_severe" name="wristjoint_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_left"  />
+              <label for="wristjoint_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Polsgewricht rechts</th>
+            <td>
+              <input id="wristjoint_right_none" name="wristjoint_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_right"  />
+              <label for="wristjoint_right_none"></label>
+            </td>
+            <td>
+              <input id="wristjoint_right_mild" name="wristjoint_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_right"  />
+              <label for="uwristjointright_mild"></label>
+            </td>
+            <td>
+              <input id="wristjoint_right_moderate" name="wristjoint_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_right"  />
+              <label for="wristjoint_right_moderate"></label>
+            </td>
+            <td>
+              <input id="wristjoint_right_severe" name="wristjoint_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.wristjoint_right"  />
+              <label for="wristjoint_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>'Knokels' links</th>
+            <td>
+              <input id="knuckles_left_none" name="knuckles_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_left" />
+              <label for="knuckles_left_none"></label>
+            </td>
+            <td>
+              <input id="knuckles_left_mild" name="knuckles_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_left" />
+              <label for="knuckles_left_mild"></label>
+            </td>
+            <td>
+              <input id="knuckles_left_moderate" name="knuckles_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_left" />
+              <label for="knuckles_left_moderate"></label>
+            </td>
+            <td>
+              <input id="knuckles_left_severe" name="knuckles_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_left" />
+              <label for="knuckles_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>'Knokels' rechts</th>
+            <td>
+              <input id="knuckles_right_none" name="knuckles_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_right"  />
+              <label for="knuckles_right_none"></label>
+            </td>
+            <td>
+              <input id="knuckles_right_mild" name="knuckles_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_right"  />
+              <label for="knuckles_right_mild"></label>
+            </td>
+            <td>
+              <input id="knuckles_right_moderate" name="knuckles_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_right"  />
+              <label for="knuckles_right_moderate"></label>
+            </td>
+            <td>
+              <input id="knuckles_right_severe" name="knuckles_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.knuckles_right"  />
+              <label for="knuckles_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Duimbasis links</th>
+            <td>
+              <input id="thumbbase_left_none" name="thumbbase_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_left" />
+              <label for="thumbbase_left_none"></label>
+            </td>
+            <td>
+              <input id="thumbbase_left_mild" name="thumbbase_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_left" />
+              <label for="thumbbase_left_mild"></label>
+            </td>
+            <td>
+              <input id="thumbbase_left_moderate" name="thumbbase_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_left" />
+              <label for="thumbbase_left_moderate"></label>
+            </td>
+            <td>
+              <input id="thumbbase_left_severe" name="thumbbase_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_left" />
+              <label for="thumbbase_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Duimbasis rechts</th>
+            <td>
+              <input id="thumbbase_right_none" name="thumbbase_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_right"  />
+              <label for="thumbbase_right_none"></label>
+            </td>
+            <td>
+              <input id="thumbbase_right_mild" name="thumbbase_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_right"  />
+              <label for="thumbbase_right_mild"></label>
+            </td>
+            <td>
+              <input id="thumbbase_right_moderate" name="thumbbase_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_right"  />
+              <label for="thumbbase_right_moderate"></label>
+            </td>
+            <td>
+              <input id="thumbbase_right_severe" name="thumbbase_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.thumbbase_right"  />
+              <label for="thumbbase_right_severe"></label>
+            </td>
+          </tr>
+
+
+          <tr>
+            <th>Gewrichtjes in de vingers links</th>
+            <td>
+              <input id="fingerjoints_left_none" name="fingerjoints_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_left"  />
+              <label for="fingerjoints_left_none"></label>
+            </td>
+            <td>
+              <input id="fingerjoints_left_mild" name="fingerjoints_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_left"  />
+              <label for="fingerjoints_left_mild"></label>
+            </td>
+            <td>
+              <input id="fingerjoints_left_moderate" name="fingerjoints_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_left"  />
+              <label for="fingerjoints_left_moderate"></label>
+            </td>
+            <td>
+              <input id="fingerjoints_left_severe" name="fingerjoints_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_left"  />
+              <label for="fingerjoints_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Gewrichtjes in de vingers rechts</th>
+            <td>
+              <input id="fingerjoints_right_none" name="fingerjoints_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_right"  />
+              <label for="fingerjoints_right_none"></label>
+            </td>
+            <td>
+              <input id="fingerjoints_right_mild" name="fingerjoints_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_right"  />
+              <label for="fingerjoints_right_mild"></label>
+            </td>
+            <td>
+              <input id="fingerjoints_right_moderate" name="fingerjoints_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_right"  />
+              <label for="fingerjoints_right_moderate"></label>
+            </td>
+            <td>
+              <input id="fingerjoints_right_severe" name="fingerjoints_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.fingerjoints_right"  />
+              <label for="fingerjoints_right_severe"></label>
+            </td>
+          </tr>
+
+
+          <tr>
+            <th>Heupgewricht links</th>
+            <td>
+              <input id="hipjoint_left_none" name="hipjoint_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_left"  />
+              <label for="hipjoint_left_none"></label>
+            </td>
+            <td>
+              <input id="hipjoint_left_mild" name="hipjoint_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_left"  />
+              <label for="hipjoint_left_mild"></label>
+            </td>
+            <td>
+              <input id="hipjoint_left_moderate" name="hipjoint_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_left"  />
+              <label for="hipjoint_left_moderate"></label>
+            </td>
+            <td>
+              <input id="hipjoint_left_severe" name="hipjoint_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_left"  />
+              <label for="hipjoint_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Heupgewricht rechts</th>
+            <td>
+              <input id="hipjoint_right_none" name="hipjoint_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_right"  />
+              <label for="hipjoint_right_none"></label>
+            </td>
+            <td>
+              <input id="hipjoint_right_mild" name="hipjoint_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_right"  />
+              <label for="hipjoint_right_mild"></label>
+            </td>
+            <td>
+              <input id="hipjoint_right_moderate" name="hipjoint_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_right"  />
+              <label for="hipjoint_right_moderate"></label>
+            </td>
+            <td>
+              <input id="hipjoint_right_severe" name="hipjoint_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.hipjoint_right"  />
+              <label for="hipjoint_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Bilstreek links</th>
+            <td>
+              <input id="buttock_left_none" name="buttock_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_left"  />
+              <label for="buttock_left_none"></label>
+            </td>
+            <td>
+              <input id="buttock_left_mild" name="buttock_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_left"  />
+              <label for="buttock_left_mild"></label>
+            </td>
+            <td>
+              <input id="buttock_left_moderate" name="buttock_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_left"  />
+              <label for="buttock_left_moderate"></label>
+            </td>
+            <td>
+              <input id="buttock_left_severe" name="buttock_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_left"  />
+              <label for="buttock_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Bilstreek rechts</th>
+            <td>
+              <input id="buttock_right_none" name="buttock_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_right"  />
+              <label for="buttock_right_none"></label>
+            </td>
+            <td>
+              <input id="buttock_right_mild" name="buttock_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_right"  />
+              <label for="buttock_right_mild"></label>
+            </td>
+            <td>
+              <input id="buttock_right_moderate" name="buttock_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_right"  />
+              <label for="buttock_right_moderate"></label>
+            </td>
+            <td>
+              <input id="buttock_right_severe" name="buttock_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.buttock_right"  />
+              <label for="buttock_right_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Knie links</th>
+            <td>
+              <input id="knee_left_none" name="knee_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_left"  />
+              <label for="knee_left_none"></label>
+            </td>
+            <td>
+              <input id="knee_left_mild" name="knee_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_left"  />
+              <label for="knee_left_mild"></label>
+            </td>
+            <td>
+              <input id="knee_left_moderate" name="knee_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_left"  />
+              <label for="knee_left_moderate"></label>
+            </td>
+            <td>
+              <input id="knee_left_severe" name="knee_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_left"  />
+              <label for="knee_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Knie rechts</th>
+            <td>
+              <input id="knee_right_none" name="knee_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_right"  />
+              <label for="knee_right_none"></label>
+            </td>
+            <td>
+              <input id="knee_right_mild" name="knee_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_right"  />
+              <label for="knee_right_mild"></label>
+            </td>
+            <td>
+              <input id="knee_right_moderate" name="knee_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_right"  />
+              <label for="knee_right_moderate"></label>
+            </td>
+            <td>
+              <input id="knee_right_severe" name="knee_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.knee_right"  />
+              <label for="knee_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Enkel links</th>
+            <td>
+              <input id="ankle_left_none" name="ankle_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_left"  />
+              <label for="ankle_left_none"></label>
+            </td>
+            <td>
+              <input id="ankle_left_mild" name="ankle_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_left"  />
+              <label for="ankle_left_mild"></label>
+            </td>
+            <td>
+              <input id="ankle_left_moderate" name="ankle_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_left"  />
+              <label for="ankle_left_moderate"></label>
+            </td>
+            <td>
+              <input id="ankle_left_severe" name="ankle_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_left"  />
+              <label for="ankle_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Enkel rechts</th>
+            <td>
+              <input id="ankle_right_none" name="ankle_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_right"  />
+              <label for="ankle_right_none"></label>
+            </td>
+            <td>
+              <input id="ankle_right_mild" name="ankle_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_right"  />
+              <label for="ankle_right_mild"></label>
+            </td>
+            <td>
+              <input id="ankle_right_moderate" name="ankle_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_right"  />
+              <label for="ankle_right_moderate"></label>
+            </td>
+            <td>
+              <input id="ankle_right_severe" name="ankle_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.ankle_right"  />
+              <label for="ankle_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Voet links</th>
+            <td>
+              <input id="foot_left_none" name="foot_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_left"  />
+              <label for="foot_left_none"></label>
+            </td>
+            <td>
+              <input id="foot_left_mild" name="foot_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_left"  />
+              <label for="foot_left_mild"></label>
+            </td>
+            <td>
+              <input id="foot_left_moderate" name="foot_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_left"  />
+              <label for="foot_left_moderate"></label>
+            </td>
+            <td>
+              <input id="foot_left_severe" name="foot_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_left"  />
+              <label for="foot_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Voet rechts</th>
+            <td>
+              <input id="foot_right_none" name="foot_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_right"  />
+              <label for="foot_right_none"></label>
+            </td>
+            <td>
+              <input id="foot_right_mild" name="foot_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_right"  />
+              <label for="foot_right_mild"></label>
+            </td>
+            <td>
+              <input id="foot_right_moderate" name="foot_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_right"  />
+              <label for="foot_right_moderate"></label>
+            </td>
+            <td>
+              <input id="foot_right_severe" name="foot_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.foot_right"  />
+              <label for="foot_right_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Gewrichtjes in tenen links</th>
+            <td>
+              <input id="toes_left_none" name="toes_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_left"  />
+              <label for="toes_left_none"></label>
+            </td>
+            <td>
+              <input id="toes_left_mild" name="toes_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_left"  />
+              <label for="toes_left_mild"></label>
+            </td>
+            <td>
+              <input id="toes_left_moderate" name="toes_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_left"  />
+              <label for="toes_left_moderate"></label>
+            </td>
+            <td>
+              <input id="toes_left_severe" name="toes_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_left"  />
+              <label for="toes_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Gewrichtjes in tenen rechts</th>
+            <td>
+              <input id="toes_right_none" name="toes_right" type="radio" value="none"  [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_right" />
+              <label for="toes_right_none"></label>
+            </td>
+            <td>
+              <input id="toes_right_mild" name="toes_right" type="radio" value="mild"  [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_right" />
+              <label for="toes_right_mild"></label>
+            </td>
+            <td>
+              <input id="toes_right_moderate" name="toes_right" type="radio" value="moderate"  [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_right" />
+              <label for="toes_right_moderate"></label>
+            </td>
+            <td>
+              <input id="toes_right_severe" name="toes_right" type="radio" value="severe"  [(ngModel)]="creds.profile.profile_medical.profile_pain.toes_right" />
+              <label for="toes_right_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Nek</th>
+            <td>
+              <input id="neck_none" name="neck" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.neck" />
+              <label for="neck_none"></label>
+            </td>
+            <td>
+              <input id="neck_mild" name="neck" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.neck" />
+              <label for="neck_mild"></label>
+            </td>
+            <td>
+              <input id="neck_moderate" name="neck" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.neck" />
+              <label for="neck_moderate"></label>
+            </td>
+            <td>
+              <input id="neck_severe" name="neck" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.neck" />
+              <label for="neck_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Kaak links</th>
+            <td>
+              <input id="jaw_left_none" name="jaw_left" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_left" />
+              <label for="jaw_left_none"></label>
+            </td>
+            <td>
+              <input id="jaw_left_mild" name="jaw_left" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_left" />
+              <label for="jaw_left_mild"></label>
+            </td>
+            <td>
+              <input id="jaw_left_moderate" name="jaw_left" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_left" />
+              <label for="jaw_left_moderate"></label>
+            </td>
+            <td>
+              <input id="jaw_left_severe" name="jaw_left" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_left" />
+              <label for="jaw_left_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Kaak rechts</th>
+            <td>
+              <input id="jaw_right_none" name="jaw_right" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_right"  />
+              <label for="jaw_right_none"></label>
+            </td>
+            <td>
+              <input id="jaw_right_mild" name="jaw_right" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_right"  />
+              <label for="jaw_right_mild"></label>
+            </td>
+            <td>
+              <input id="jaw_right_moderate" name="jaw_right" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_right"  />
+              <label for="jaw_right_moderate"></label>
+            </td>
+            <td>
+              <input id="jaw_right_severe" name="jaw_right" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.jaw_right"  />
+              <label for="jaw_right_severe"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Onderrug</th>
+            <td>
+              <input id="lowerback_none" name="lowerback" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.lowerback" />
+              <label for="lowerback_none"></label>
+            </td>
+            <td>
+              <input id="lowerback_mild" name="lowerback" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.lowerback" />
+              <label for="lowerback_mild"></label>
+            </td>
+            <td>
+              <input id="lowerback_moderate" name="lowerback" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.lowerback" />
+              <label for="lowerback_moderate"></label>
+            </td>
+            <td>
+              <input id="lowerback_severe" name="lowerback" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.lowerback" />
+              <label for="lowerback_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Bovenrug</th>
+            <td>
+              <input id="upperback_none" name="upperback" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperback"  />
+              <label for="upperback_none"></label>
+            </td>
+            <td>
+              <input id="upperback_mild" name="upperback" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperback"  />
+              <label for="upperback_mild"></label>
+            </td>
+            <td>
+              <input id="upperback_moderate" name="upperback" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperback"  />
+              <label for="upperback_moderate"></label>
+            </td>
+            <td>
+              <input id="upperback_severe" name="upperback" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.upperback"  />
+              <label for="upperback_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Borst</th>
+            <td>
+              <input id="chest_none" name="chest" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.chest" />
+              <label for="chest_none"></label>
+            </td>
+            <td>
+              <input id="chest_mild" name="chest" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.chest" />
+              <label for="chest_mild"></label>
+            </td>
+            <td>
+              <input id="chest_moderate" name="chest" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.chest" />
+              <label for="chest_moderate"></label>
+            </td>
+            <td>
+              <input id="chest_severe" name="chest" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.chest" />
+              <label for="chest_severe"></label>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Buik</th>
+            <td>
+              <input id="belly_none" name="belly" type="radio" value="none" [(ngModel)]="creds.profile.profile_medical.profile_pain.belly" />
+              <label for="belly_none"></label>
+            </td>
+            <td>
+              <input id="belly_mild" name="belly" type="radio" value="mild" [(ngModel)]="creds.profile.profile_medical.profile_pain.belly" />
+              <label for="belly_mild"></label>
+            </td>
+            <td>
+              <input id="belly_moderate" name="belly" type="radio" value="moderate" [(ngModel)]="creds.profile.profile_medical.profile_pain.belly" />
+              <label for="belly_moderate"></label>
+            </td>
+            <td>
+              <input id="belly_severe" name="belly" type="radio" value="severe" [(ngModel)]="creds.profile.profile_medical.profile_pain.belly" />
+              <label for="belly_severe"></label>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <br>
+
+      <div>
+        <label>Hoeveel vaak luxeren of subluxeren uw gewrichten?</label>
+        <table>
+          <tr>
+            <th></th>
+            <th>Dagelijks</th>
+            <th>Enkele keren per week</th>
+            <th>Enkele keren per maand</th>
+            <th>Sporadisch, heel af en toe</th>
+            <th>Nooit</th>
+          </tr>
+          <tr>
+            <th>Bekkengewricht</th>
+            <td>
+              <input id="pelvicjoint_everyday" name="pelvicjoint" type="radio" value="everyday"  [(ngModel)]="creds.profile.profile_medical.profile_luxation.pelvicjoint" />
+              <label for="pelvicjoint_everyday"></label>
+            </td>
+            <td>
+              <input id="pelvicjoint_weekly" name="pelvicjoint" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.pelvicjoint" />
+              <label for="pelvicjoint_weekly"></label>
+            </td>
+            <td>
+              <input id="pelvicjoint_monthly" name="pelvicjoint" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.pelvicjoint" />
+              <label for="pelvicjoint_monthly"></label>
+            </td>
+            <td>
+              <input id="pelvicjoint_rarely" name="pelvicjoint" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.pelvicjoint" />
+              <label for="pelvicjoint_rarely"></label>
+            </td>
+            <td>
+              <input id="pelvicjoint_never" name="pelvicjoint" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.pelvicjoint" />
+              <label for="pelvicjoint_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Heup</th>
+            <td>
+              <input id="hip_everyday" name="hip" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.hip" />
+              <label for="hip_everyday"></label>
+            </td>
+            <td>
+              <input id="hip_weekly" name="hip" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.hip" />
+              <label for="hip_weekly"></label>
+            </td>
+            <td>
+              <input id="hip_monthly" name="hip" type="radio"  value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.hip"/>
+              <label for="hip_monthly"></label>
+            </td>
+            <td>
+              <input id="hip_rarely" name="hip" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.hip" />
+              <label for="hip_rarely"></label>
+            </td>
+            <td>
+              <input id="hip_never" name="hip" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.hip" />
+              <label for="hip_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Knie</th>
+            <td>
+              <input id="knee_everyday" name="knee" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.knee" />
+              <label for="knee_everyday"></label>
+            </td>
+            <td>
+              <input id="knee_weekly" name="knee" type="radio" value="weekly"  [(ngModel)]="creds.profile.profile_medical.profile_luxation.knee"/>
+              <label for="knee_weekly"></label>
+            </td>
+            <td>
+              <input id="knee_monthly" name="knee" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.knee" />
+              <label for="knee_monthly"></label>
+            </td>
+            <td>
+              <input id="knee_rarely" name="knee" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.knee" />
+              <label for="knee_rarely"></label>
+            </td>
+            <td>
+              <input id="knee_never" name="knee" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.knee" />
+              <label for="knee_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Enkel</th>
+            <td>
+              <input id="ankle_everyday" name="ankle" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ankle" />
+              <label for="ankle_everyday"></label>
+            </td>
+            <td>
+              <input id="ankle_weekly" name="ankle" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ankle" />
+              <label for="ankle_weekly"></label>
+            </td>
+            <td>
+              <input id="ankle_monthly" name="ankle" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ankle" />
+              <label for="ankle_monthly"></label>
+            </td>
+            <td>
+              <input id="ankle_rarely" name="ankle" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ankle" />
+              <label for="ankle_rarely"></label>
+            </td>
+            <td>
+              <input id="ankle_never" name="ankle" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ankle" />
+              <label for="ankle_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Middenvoetsbeentje</th>
+            <td>
+              <input id="metatarsalbone_everyday" name="metatarsalbone" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metatarsalbone" />
+              <label for="metatarsalbone_everyday"></label>
+            </td>
+            <td>
+              <input id="metatarsalbone_weekly" name="metatarsalbone" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metatarsalbone" />
+              <label for="metatarsalbone_weekly"></label>
+            </td>
+            <td>
+              <input id="metatarsalbone_monthly" name="metatarsalbone" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metatarsalbone" />
+              <label for="metatarsalbone_monthly"></label>
+            </td>
+            <td>
+              <input id="metatarsalbone_rarely" name="metatarsalbone" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metatarsalbone" />
+              <label for="metatarsalbone_rarely"></label>
+            </td>
+            <td>
+              <input id="metatarsalbone_never" name="metatarsalbone" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metatarsalbone" />
+              <label for="metatarsalbone_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Tenen</th>
+            <td>
+              <input id="toes_everyday" name="toes" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.toes" />
+              <label for="toes_everyday"></label>
+            </td>
+            <td>
+              <input id="toes_weekly" name="toes" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.toes" />
+              <label for="toes_weekly"></label>
+            </td>
+            <td>
+              <input id="toes_monthly" name="toes" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.toes" />
+              <label for="toes_monthly"></label>
+            </td>
+            <td>
+              <input id="toes_rarely" name="toes" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.toes" />
+              <label for="toes_rarely"></label>
+            </td>
+            <td>
+              <input id="toes_never" name="toes" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.toes" />
+              <label for="toes_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Wervels lage rug</th>
+            <td>
+              <input id="lowback_everyday" name="lowback" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.lowback" />
+              <label for="lowback_everyday"></label>
+            </td>
+            <td>
+              <input id="lowback_weekly" name="lowback" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.lowback" />
+              <label for="lowback_weekly"></label>
+            </td>
+            <td>
+              <input id="lowback_monthly" name="lowback" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.lowback" />
+              <label for="lowback_monthly"></label>
+            </td>
+            <td>
+              <input id="lowback_rarely" name="lowback" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.lowback" />
+              <label for="lowback_rarely"></label>
+            </td>
+            <td>
+              <input id="lowback_never" name="lowback" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.lowback" />
+              <label for="lowback_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Wervels hoge rug</th>
+            <td>
+              <input id="highback_everyday" name="highback" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.highback" />
+              <label for="highback_everyday"></label>
+            </td>
+            <td>
+              <input id="highback_weekly" name="highback" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.highback" />
+              <label for="highback_weekly"></label>
+            </td>
+            <td>
+              <input id="highback_monthly" name="highback" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.highback" />
+              <label for="highback_monthly"></label>
+            </td>
+            <td>
+              <input id="highback_rarely" name="highback" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.highback" />
+              <label for="highback_rarely"></label>
+            </td>
+            <td>
+              <input id="highback_never" name="highback" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.highback" />
+              <label for="highback_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Ribben</th>
+            <td>
+              <input id="ribs_everyday" name="ribs" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ribs" />
+              <label for="ribs_everyday"></label>
+            </td>
+            <td>
+              <input id="ribs_weekly" name="ribs" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ribs" />
+              <label for="ribs_weekly"></label>
+            </td>
+            <td>
+              <input id="ribs_monthly" name="ribs" type="radio" value="monthly"  [(ngModel)]="creds.profile.profile_medical.profile_luxation.ribs"/>
+              <label for="ribs_monthly"></label>
+            </td>
+            <td>
+              <input id="ribs_rarely" name="ribs" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ribs" />
+              <label for="ribs_rarely"></label>
+            </td>
+            <td>
+              <input id="ribs_never" name="ribs" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.ribs" />
+              <label for="ribs_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Nekwervels</th>
+            <td>
+              <input id="neck_vertebra_everyday" name="neck_vertebra" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.neck" />
+              <label for="neck_vertebra_everyday"></label>
+            </td>
+            <td>
+              <input id="neck_vertebra_weekly" name="neck_vertebra" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.neck" />
+              <label for="neck_vertebra_weekly"></label>
+            </td>
+            <td>
+              <input id="neck_vertebra_monthly" name="neck_vertebra" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.neck" />
+              <label for="neck_vertebra_monthly"></label>
+            </td>
+            <td>
+              <input id="neck_vertebra_rarely" name="neck_vertebra" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.neck" />
+              <label for="neck_vertebra_rarely"></label>
+            </td>
+            <td>
+              <input id="neck_vertebra_never" name="neck_vertebra" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.neck" />
+              <label for="neck_vertebra_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Kaken</th>
+            <td>
+              <input id="jaws_everyday" name="jaws" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.jaws" />
+              <label for="jaws_everyday"></label>
+            </td>
+            <td>
+              <input id="jaws_weekly" name="jaws" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.jaws" />
+              <label for="jaws_weekly"></label>
+            </td>
+            <td>
+              <input id="jaws_monthly" name="jaws" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.jaws" />
+              <label for="jaws_monthly"></label>
+            </td>
+            <td>
+              <input id="jaws_rarely" name="jaws" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.jaws" />
+              <label for="jaws_rarely"></label>
+            </td>
+            <td>
+              <input id="jaws_never" name="jaws" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.jaws" />
+              <label for="jaws_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Schouder</th>
+            <td>
+              <input id="shoulder_everyday" name="shoulder" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.shoulder" />
+              <label for="shoulder_everyday"></label>
+            </td>
+            <td>
+              <input id="shoulder_weekly" name="shoulder" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.shoulder" />
+              <label for="shoulder_weekly"></label>
+            </td>
+            <td>
+              <input id="shoulder_monthly" name="shoulder" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.shoulder" />
+              <label for="shoulder_monthly"></label>
+            </td>
+            <td>
+              <input id="shoulder_rarely" name="shoulder" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.shoulder" />
+              <label for="shoulder_rarely"></label>
+            </td>
+            <td>
+              <input id="shoulder_never" name="shoulder" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.shoulder" />
+              <label for="shoulder_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Elleboog</th>
+            <td>
+              <input id="elbow_everyday" name="elbow" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.elbow" />
+              <label for="elbow_everyday"></label>
+            </td>
+            <td>
+              <input id="elbow_weekly" name="elbow" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.elbow" />
+              <label for="elbow_weekly"></label>
+            </td>
+            <td>
+              <input id="elbow_monthly" name="elbow" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.elbow" />
+              <label for="elbow_monthly"></label>
+            </td>
+            <td>
+              <input id="elbow_rarely" name="elbow" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.elbow" />
+              <label for="elbow_rarely"></label>
+            </td>
+            <td>
+              <input id="elbow_never" name="elbow" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.elbow" />
+              <label for="elbow_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Pols</th>
+            <td>
+              <input id="wrist_everyday" name="wrist" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.wrist" />
+              <label for="wrist_everyday"></label>
+            </td>
+            <td>
+              <input id="wrist_weekly" name="wrist" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.wrist" />
+              <label for="wrist_weekly"></label>
+            </td>
+            <td>
+              <input id="wrist_monthly" name="wrist" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.wrist" />
+              <label for="wrist_monthly"></label>
+            </td>
+            <td>
+              <input id="wrist_rarely" name="wrist" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.wrist" />
+              <label for="wrist_rarely"></label>
+            </td>
+            <td>
+              <input id="wrist_never" name="wrist" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.wrist" />
+              <label for="wrist_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Middenhandsbeentje</th>
+            <td>
+              <input id="metacarpal_everyday" name="metacarpal" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metacarpal" />
+              <label for="metacarpal_everyday"></label>
+            </td>
+            <td>
+              <input id="metacarpal_weekly" name="metacarpal" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metacarpal" />
+              <label for="metacarpal_weekly"></label>
+            </td>
+            <td>
+              <input id="metacarpal_monthly" name="metacarpal" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metacarpal" />
+              <label for="metacarpal_monthly"></label>
+            </td>
+            <td>
+              <input id="metacarpal_rarely" name="metacarpal" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metacarpal" />
+              <label for="metacarpal_rarely"></label>
+            </td>
+            <td>
+              <input id="metacarpal_never" name="metacarpal" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.metacarpal" />
+              <label for="metacarpal_never"></label>
+            </td>
+          </tr>
+          <tr>
+            <th>Vingers</th>
+            <td>
+              <input id="fingers_everyday" name="fingers" type="radio" value="everyday" [(ngModel)]="creds.profile.profile_medical.profile_luxation.fingers" />
+              <label for="fingers_everyday"></label>
+            </td>
+            <td>
+              <input id="fingers_weekly" name="fingers" type="radio" value="weekly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.fingers" />
+              <label for="fingers_weekly"></label>
+            </td>
+            <td>
+              <input id="fingers_monthly" name="fingers" type="radio" value="monthly" [(ngModel)]="creds.profile.profile_medical.profile_luxation.fingers" />
+              <label for="fingers_monthly"></label>
+            </td>
+            <td>
+              <input id="fingers_rarely" name="fingers" type="radio" value="rarely" [(ngModel)]="creds.profile.profile_medical.profile_luxation.fingers" />
+              <label for="fingers_rarely"></label>
+            </td>
+            <td>
+              <input id="fingers_never" name="fingers" type="radio" value="never" [(ngModel)]="creds.profile.profile_medical.profile_luxation.fingers" />
+              <label for="fingers_never"></label>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+
+      <br>
+      <div class="input-field">
+        <input placeholder="Vrije opmerking" id="note" name="note" type="text" class="validate" [(ngModel)]="creds.profile.profile_medical.note">
+        <label for="note">Vrije opmerking</label>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+
+
+<a class="waves-effect waves-light btn" (click)="save()">Opslaan</a>
+
+
+<a class="waves-effect waves-light btn" (click)="deleteModal()"><i class="fa fa-trash"></i></a>
+
+
+
+
+
+<!-- Wachtwoord aanpassen
+<div class="input-field">
+    <input placeholder="Wachtwoord" id="password" name="password" type="password" class="validate" [(ngModel)]="creds.password">
+    <label for="password">Wachtwoord</label>
+  </div> -->

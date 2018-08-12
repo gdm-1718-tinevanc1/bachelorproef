@@ -1,0 +1,15 @@
+@import '../../styles.scss';
+
+.body{
+    display: none;
+}
+
+.header{
+    text-transform: uppercase;
+    color: $primary-color;
+    font-weight: bold;
+}
+
+.block{
+    padding-bottom: 20px;
+}

@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+.btn{
+    background-color: #5F4B59;
+}
+
+.btn:hover, .btn:focus{
+    background-color: #96788D;
+}
+
+
+.btn--delete{
+    margin-top: -30px;
+    margin-left: 5px;
+    a{
+        color: #fff;
+        padding: 3px;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+}

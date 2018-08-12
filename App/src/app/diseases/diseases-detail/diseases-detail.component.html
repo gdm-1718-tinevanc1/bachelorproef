@@ -1,0 +1,52 @@
+<div class="{{disease.shorttitle}}">
+    <h1 class="title">Wat is {{disease.title}}?</h1>
+    <ul class="collapsible" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header active" (click)="collapsible($event)">Info
+                <i class="fa fa-caret-down right"></i>
+            </div>
+            <div class="collapsible-body">
+                <span> {{disease.description}}</span>
+            </div>
+        </li>
+    </ul>
+    <ul  *ngIf="disease.types_diseases.length" class="collapsible" data-collapsible="accordion">
+        <li *ngFor="let type of disease.types_diseases">
+            <div class="collapsible-header" (click)="collapsible($event)">{{type.name}}
+                <i class="fa fa-caret-down right"></i>
+            </div>
+            <div class="collapsible-body">
+                <div class="row">
+                    <div class="col s12 m12">
+                        <ul>
+                            <li *ngIf="type.info">
+                                <div class="collapsible-header" (click)="collapsible($event)">Info
+                                    <i class="fa fa-caret-down right"></i>
+                                </div>
+                                <div class="collapsible-body">
+                                    {{type.info}}
+                                </div>
+                            </li>
+                            <li *ngIf="type.criteria">
+                                <div class="collapsible-header" (click)="collapsible($event)">Criteria
+                                    <i class="fa fa-caret-down right"></i>
+                                </div>
+                                <div class="collapsible-body">{{type.criteria}}</div>
+                            </li>
+                            <li *ngIf="type.diagnose">
+                                <div class="collapsible-header" (click)="collapsible($event)">Diagnose
+                                    <i class="fa fa-caret-down right"></i>
+                                </div>
+                                <div class="collapsible-body">{{type.diagnose}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="sources">
+        <li *ngFor="let source of disease.sources">{{source.source}}</li>
+    </ul>
+</div>

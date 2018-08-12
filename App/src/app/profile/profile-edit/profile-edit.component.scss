@@ -1,0 +1,62 @@
+@import '../../../styles.scss';
+
+table{
+    table-layout: fixed;
+
+    th{
+        font-weight: normal;
+        color: dimgrey;
+        font-size: 0.9rem;
+    } 
+}
+
+.tabs .tab[hidden]{
+    display: none; 
+}
+
+
+.tab__body{
+    margin-top: 20px;
+    
+    h5{
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        padding-bottom: 30px;
+        font-weight: 450;
+    }
+}
+
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:after {
+  background-color: #BC95A5;
+  border-color: #BC95A5;
+}
+
+
+
+.tabs .tab a{
+    color: $primary-color;
+}
+.tabs .tab{
+    border-bottom: $primary-color;
+}
+
+.tabs .indicator{
+    background-color: yellow !important;
+}
+
+#medical label{
+    font-size: 1rem;
+    color: black;
+}
+
+
+.modal{
+    padding: 20px;
+    z-index: 999;
+    margin-top: 20px;
+    .btn{
+        width: 30%;
+    }
+}

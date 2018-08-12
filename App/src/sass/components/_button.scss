@@ -1,0 +1,23 @@
+.btn{
+    background-color: #5F4B59;
+    color: #ffffff;
+}
+
+.btn:hover{
+    background-color: #96788D;
+    color: $primary-color;
+}
+
+.btn--more{
+    background: none;
+    border: 2px solid $primary-color;
+    color: $primary-color;
+    font-weight: 500;
+    margin: 0 auto;
+    border-radius: 0;
+}
+
+.contact .btn, .btn--more{
+    width: 160px;
+    margin-left: calc( 50% - 80px );
+}

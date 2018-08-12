@@ -1,0 +1,25 @@
+<div class="row">
+    <h3 class="left">Nieuws</h3>
+
+    <div class="right select--filter">
+        <label for="type"> Category: </label><br>
+        <select name="type" (change)="getNewsByType($event.target.value)">
+            <option selected="selected" value="all">Alle</option>
+            <option *ngFor="let type of types" value="{{type.name}}">{{type.name}}</option>
+        </select>
+    </div> 
+</div>
+
+
+<div *ngFor="let new of news">
+  <div class="news">
+    <h4>{{new.title}}</h4>
+    <h5>{{new.subtitle}}</h5>
+    <span class="bold"> {{new.date}} - {{new.place}}</span>
+    <div class="news__text">
+      {{new.text}}
+    </div>
+    <p class="right">Bron: {{new.source}}</p>
+
+  </div> 
+</div>

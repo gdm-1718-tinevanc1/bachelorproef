@@ -1,0 +1,26 @@
+.dashboard{
+    .blocks{
+        margin-top: 30px;
+        margin-bottom:20px;
+
+        .block{
+            background-color: $secondary-color;
+            height: 100px;
+            text-align: center;
+            padding: 10px;
+            font-size: 1.1rem;
+            .count{
+                font-size: 1.2rem;
+                font-weight: bold;
+            }
+
+            p{
+                margin: 10px;
+            }
+        }
+    }
+
+    .list{
+        margin:50px 0;
+    }
+}

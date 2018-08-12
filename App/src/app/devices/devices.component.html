@@ -1,0 +1,32 @@
+<div>
+    <h3>Hulpmiddelen</h3>
+
+  <div class="row">
+      <div class="col s12 m6">
+        <div (click)="getPart($event)" id="bodySvg" class="bodySvg"></div>
+
+      </div>
+      <div class="col s12 m6">
+        <h5 class="title">{{title}}</h5>
+          <ul>
+              <li *ngFor="let device of devices">
+                <p class="subtitle">{{device.name}}</p>
+                {{device.procedure}}
+                <h6 class="bold">Instantie:</h6>
+                {{device.type_agency.name}}
+                <h6 class="bold">Bij wie te verkrijgen?</h6>
+                <ul>
+                  <li *ngFor="let practitioner of device.type_practitioners">
+                    {{practitioner.name}}
+                  </li>
+                </ul>
+
+                <ul>
+                  <img class="device__image" *ngFor="let image of device.images" [src]="image.url">
+                </ul>
+                <hr>
+              </li>
+            </ul>      
+      </div>
+  </div>
+</div>

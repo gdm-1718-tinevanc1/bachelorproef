@@ -1,0 +1,28 @@
+<div class="notcopyable">
+
+    <div class="row">
+        <h3 class="left">Voorbeeldoefeningen</h3>
+            
+        <div class="row right select--filter">
+            <label for="type"> Types: </label><br>
+            <select name="type" (change)="getExamplesByType($event.target.value)">
+                <option selected="selected" value="all">Alle</option>
+                <option *ngFor="let type of types" value="{{type.name}}">{{type.name}}</option>
+            </select>
+        </div>
+    </div>
+            
+    <div class="clear"></div> 
+            
+            
+    <div class="row">
+        <div class="col s4" *ngFor="let example of examples">
+            <h4>{{example.name}}</h4>
+            <p>{{example.description}}</p>
+            <div class="row">
+             <div *ngFor="let image of example.images" class="col s4"><img src="{{image.url}}"></div>
+            </div>
+        </div>
+    </div>
+            
+</div>

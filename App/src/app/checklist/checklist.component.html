@@ -1,0 +1,177 @@
+<h3>Checklist</h3>
+<form action="">
+  <div>
+
+    <div class="block">
+      <h4>Gegeneraliseerde gewrichtshypermobileit</h4>
+      <p>
+        Leeftijd?
+        <select name="age" [(ngModel)]="age" required>
+          <option value="6">Pre-puberale kind of adolescent</option>
+          <option value="5" selected>Man of vrouw na de puberteit</option>
+          <option value="4">Man of vrouw boven de 50</option>
+        </select>
+      </p>
+
+      <p>
+        Wanneer de onderarm en hand plat op tafel liggen en de elleboog 90 graden gebogen, kan de pink meer dan 90 graden passief
+        (met hulp) omhoog worden gebogen ten opzichte van de hand.
+        <br>
+        <input type="checkbox" id="pinkyLeft" name="pinkyLeft" [(ngModel)]="hypermobility.pinkyLeft" />
+        <label for="pinkyLeft"> Links</label>
+        <input type="checkbox" id="pinkyRight" name="pinkyRight" [(ngModel)]="hypermobility.pinkyRight" />
+        <label for="pinkyRight"> Rechts</label>
+      </p>
+
+      <p>
+        Met gestrekte arm naar voren kan de duim passief (met hulp) tegen de onderarm worden bewogen.
+        <br>
+        <input type="checkbox" id="thumbLeft" name="thumbLeft" [(ngModel)]="hypermobility.thumbLeft" />
+        <label for="thumbLeft"> Links</label>
+        <input type="checkbox" id="thumbRight" name="thumbRight" [(ngModel)]="hypermobility.thumbRight" />
+        <label for="thumbRight"> Rechts</label>
+      </p>
+
+      <p>
+        Met de arm gestrekt opzij en de hand met handpalm naar boven omlaag gebogen kan de elleboog meer dan 10 graden overstrekken.
+        <br>
+        <input type="checkbox" id="elbowLeft" name="elbowLeft" [(ngModel)]="hypermobility.elbowLeft" />
+        <label for="elbowLeft"> Links</label>
+        <input type="checkbox" id="elbowRight" name="elbowRight" [(ngModel)]="hypermobility.elbowRight" />
+        <label for="elbowRight"> Rechts</label>
+      </p>
+
+      <p>
+        Staand kan de knie meer dan 10 graden overstrekken.
+        <br>
+        <input type="checkbox" id="kneeLeft" name="kneeLeft" [(ngModel)]="hypermobility.kneeLeft" />
+        <label for="kneeLeft"> Links</label>
+        <input type="checkbox" id="kneeRight" name="kneeRight" [(ngModel)]="hypermobility.kneeRight" />
+        <label for="kneeRight"> Rechts</label>
+      </p>
+
+      <p>
+        Staand met rechte knieën en benen tegen wanneer met vlakke handen de vloer kan worden aangeraakt.
+        <br>
+        <input type="checkbox" id="back" name="back" [(ngModel)]="hypermobility.back" />
+        <label for="back">Plat op de grond</label>
+      </p>
+
+    </div>
+  </div>
+
+
+  <div class="block">
+    <h4>Systemische kenmerken</h4>
+    <p>
+      <input type="checkbox" id="velvetySkin" name="velvetySkin" [(ngModel)]="symptoms.velvetySkin" />
+      <label for="velvetySkin"> Opvallend zachte of fluweelachtige huid.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="hyperelasticSkin" name="hyperelasticSkin" [(ngModel)]="symptoms.hyperelasticSkin" />
+      <label for="hyperelasticSkin"> Milde hyperelastische huid (Huid aan de onderzijde van de onderarm is minstens 1,5 cm op te rekken).</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="stretchMarks" name="stretchMarks" [(ngModel)]="symptoms.stretchMarks" />
+      <label for="stretchMarks"> Onverklaarbare striae zoals striae op de rug, lies, dijbenen, borsten en of buik bij adolescenten, mannen of prepuberale
+        vrouwen die in het verleden nooit veel van gewicht veranderd zijn.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="piezogenPapels" name="piezogenPapels" [(ngModel)]="symptoms.piezogenPapels" />
+      <label for="piezogenPapels"> Aan twee voeten piezogene papels aan de hiel. Kleine bultjes die zichtbaar zijn zodra de voet belast wordt. Ze ontstaan
+        doordat vetweefsel uitstulpt door de opperhuid. </label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="hernia" name="hernia" [(ngModel)]="symptoms.hernia" />
+      <label for="hernia"> Terugkerende of meerdere buikwandbreuken (bijvoorbeeld liesbreuk of navelbreuk).</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="scars" name="scars" [(ngModel)]="symptoms.scars" />
+      <label for="scars"> Atrofische littekens (dunne en diepliggende littekens/ milde sigarettenpapier littekens) op ten minste 2 plekken zonder
+        dat ze echt perkamentachtig en/of geelbruin verkleurd zijn zoals gezien wordt bij klassieke EDS.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="prolapse" name="prolapse" [(ngModel)]="symptoms.prolapse" />
+      <label for="prolapse"> Bekkenbodem-, rectum- of baarmoederverzakking bij kinderen, mannen of vrouwen die niet langer dan 20 weken zwanger
+        zijn geweest, zonder dat ze ooit morbide obesitas hebben gehad of een andere onderliggende medische oorzaak.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="dentalCrowding" name="dentalCrowding" [(ngModel)]="symptoms.dentalCrowding" />
+      <label for="dentalCrowding"> Dental crowding (ruimtegebrek waardoor tanden scheef staan) in combinatie met een hoog en/of smal gehemelte</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="arachnodactyly" name="arachnodactyly" [(ngModel)]="symptoms.arachnodactyly" />
+      <label for="arachnodactyly"> Arachnodactyly (de vingers zijn heel lang en dun ten opzichte van de handpalm) Hier is sprake van indien: 1. Het duimteken/Teken
+        van Steinberg positief is aan beide kanten. (als de duim in de handpalm wordt gelegd en de handpalm gesloten steekt
+        de duimtop uit). OF 2. Het polsteken/Teken van Walker-Murdoch positief is aan beide kanten. (wanneer) de eerste en
+        vijfde vinger om de andere pols worden gelegd overlappen ze elkaar. </label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="ratio" name="ratio" [(ngModel)]="symptoms.ratio" />
+      <label for="ratio"> De verhouding tussen de armlengte en lichaamslengte is groter dan of gelijk aan 1.05.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="mvi" name="mvi" [(ngModel)]="symptoms.mvi" />
+      <label for="mvi"> Mitralisklepinsufficiëntie vastgesteld met een echo. Meestal is deze mild bij hEDS patiënten en hoeft deze niet behandeld
+        worden.
+      </label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="aneurysm" name="aneurysm" [(ngModel)]="symptoms.aneurysm" />
+      <label for="aneurysm"> Dilatatie oftewel een verwijding van de aortawortel met een Z-score >+2.</label>
+    </p>
+  </div>
+
+  <div class="block">
+    <h4>Positieve familie historie</h4>
+    <p>
+      <input type="checkbox" id="familyHistory" name="familyHistory" [(ngModel)]="familyHistory" />
+      <label for="familyHistory"> Een of meer eerstegraads (ouder, kind, broer of zus) familieleden voldoen aan de criteria voor hEDS.</label>
+    </p>
+  </div>
+
+  <div class="block">
+    <h4>Muscoskeletale complicaties oftewel complicaties van het bewegingsapparaat.</h4>
+    <p>
+      <input type="checkbox" id="musculoskeletalPain" name="musculoskeletalPain" [(ngModel)]="complications.musculoskeletalPain"
+      />
+      <label for="musculoskeletalPain"> Dagelijks terugkerende muscoskeletale pijn in twee of meer ledematen die minstens 3 maanden duurt.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="chronicPain" name="chronicPain" [(ngModel)]="complications.chronicPain" />
+      <label for="chronicPain"> Chronische wijdverspreide pijn die minstens 3 maanden aanwezig is.</label>
+    </p>
+
+    <p>
+      <input type="checkbox" id="luxations" name="luxations" [(ngModel)]="complications.luxations" />
+      <label for="luxations">Terugkerende gewrichtsluxaties of duidelijk aanwezig instabiliteit van de gewrichten zonder trauma, er moet sprake
+        zijn van a of b: a) Drie of meer luxaties zonder trauma in hetzelfde gewricht of 2 of meer atraumatische luxaties
+        in verschillende gewrichten op verschillende momenten. b) Medisch bevestigde gewrichtsinstabiliteit op 2 of meer
+        plekken die geen verband houdt met een trauma.</label>
+    </p>
+  </div>
+
+  <div *ngIf="result" class="bold result">
+      <a class="waves-effect waves-light btn btn--download" (click)="download()"><i class="fa fa-download"></i> </a>
+      {{result}}
+  </div>
+
+
+  <a class="waves-effect waves-light btn" (click)="save()">Resultaat weergeven</a>
+
+
+
+
+</form>

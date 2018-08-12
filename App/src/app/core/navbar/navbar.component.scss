@@ -1,0 +1,128 @@
+
+
+
+
+@import '../../../styles.scss';
+
+
+@media (min-width: 768px) {
+    #offcanvas__navigation{
+        display: none;
+        z-index: 99;
+    }
+
+    #offcanvas__header{
+        display: none
+    }
+}
+
+
+@media (max-width: 768px) {
+    #navigation{
+        display: none;
+    }
+}
+
+
+
+.navbar-nav{
+    background-color: $black;
+    margin:0;
+    padding-left: 15px;
+    ul {
+        margin: 0;
+        & > li {
+            display: inline;
+            padding: 15px;
+            text-transform: uppercase;
+            a {
+                color: $white;
+            }
+        }
+        li {
+            .btn{
+                background: none;
+                box-shadow: none !important;
+                padding-left: 0;
+                padding-right: 0;
+            }
+    
+            .dropdown-content{
+                top: 40px !important;
+                width: 200px !important;
+                background-color: $black;
+                li{
+                    padding: 0;
+                    a{
+                        color: $white;
+        
+                        &:hover {
+                            color: $black;
+                            background-color: $white;
+                        }
+                    } 
+                }
+            }
+        }
+    }
+
+    .icons {
+        margin-top: -40px;
+        margin-right: 10px;
+        i {
+            color: $white;
+            font-size: 1.2rem;
+        }
+        .icon--user{
+            padding: 0;
+        }
+    } 
+
+    .select--country{
+        width: 45px;
+        background: none;
+        color: white;
+        border: none;
+    }
+}
+
+#offcanvas__header{
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#offcanvas__navigation{
+    p{
+        color: $primary-color;
+        font-style: italic;
+    }
+
+    .navbar-nav ul li {
+        display: block;
+        text-transform: lowercase;
+        padding: 3px 10px;
+
+        a {
+            text-transform: lowercase;
+            color: $primary-color;
+        }
+    }
+
+    .navbar-nav ul{
+        padding-bottom: 10px;
+    }
+
+    hr{
+        border: 0.5px dashed;
+    }
+    .navbar-nav{
+        background-color: #ffffff;
+    }
+}
+
+
+.navbar-toggle{
+    text-align: right;
+    padding-right: 10px;
+    font-size: 1.5rem;
+}

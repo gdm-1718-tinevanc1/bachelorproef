@@ -1,0 +1,14 @@
+#page__background::after {
+    content: "";
+    background:  url("/../../assets/zebra_right.png");
+    background-repeat: no-repeat;
+    background-size: auto 275px;
+    background-position: right bottom;
+    opacity: 0.25;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }

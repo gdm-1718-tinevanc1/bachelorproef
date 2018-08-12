@@ -1,0 +1,35 @@
+@import '../../../styles.scss';
+
+.side-nav{
+    margin-top: 50px;
+    margin-left: 10px;
+    border: 2px solid $primary-color;
+    width: 250px;
+    padding-top: 20px;
+
+    li > a{
+        padding: 0 15px;
+        color: white;
+        background-color: black;
+        margin: 5px 8px;
+        height: 35px;
+        line-height: 35px;
+
+        .ng-fa-icon{
+            padding-right: 15px;
+        }
+
+        &:hover{
+            background-color: $primary-color;
+        }
+    }
+
+    li:first{
+        padding-top: 20px;
+    }
+
+    .selected a{
+        background-color: $primary-color;
+    }
+
+}

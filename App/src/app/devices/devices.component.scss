@@ -1,0 +1,34 @@
+@import '../../styles.scss';
+
+.grid__container{
+    margin-top: 20px;
+}
+
+.bodySvg{
+    width: 60%;
+}
+
+
+@media (max-width: 768px) {
+    .bodySvg{
+        width: 100%;
+    }
+}
+
+
+.device__image{
+    width: 50px;
+}
+
+.title{
+    color: $primary-color;
+}
+
+.subtitle{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+hr{
+    border: 0.5px solid $primary-color;
+}

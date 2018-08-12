@@ -1,0 +1,20 @@
+<h3>Meld u aan</h3>
+<form action="" [formGroup]="form">
+  <div class="input-field">
+    <input name="username" placeholder="Gebruikersnaam" id="username" type="text" class="validate" formControlName="username">
+    <label for="username">Gebruikersnaam</label>
+    <p align="start" *ngIf="formErrors.username" class="form__error">{{ formErrors.username }}</p>
+
+  </div>
+  <div class="input-field">
+    <input name="password" placeholder="Wachtwoord" id="password" type="password" class="validate" formControlName="password">
+    <label for="password">Wachtwoord</label>
+    <p align="start" *ngIf="formErrors.password" class="form__error">{{ formErrors.password }}</p>
+
+  </div>
+
+  <a class="waves-effect waves-light btn" (click)="save()">Aanmelden</a>
+  <a class="link--forgotpassword" [routerLink]='["/forget/password"]'>Wachtwoord vergeten?</a>
+</form>
+
+<p class="link--register">Nog geen account? <a [routerLink]='["/register"]'>Registeer hier</a></p>

@@ -1,0 +1,57 @@
+@import '../../../styles.scss';
+
+
+.collapsible-header{
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block
+}
+
+.title{
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.Hypermobiel {
+    .collapsible-header{
+        border-bottom: 1px solid $hypermobiel-color;
+    }
+    .title{
+        color: $hypermobiel-color;
+    }
+}
+
+.HSD {
+    .collapsible-header{
+        border-bottom: 1px solid $hsd-color;
+    }
+    .title{
+        color: $hsd-color;
+    }
+}
+
+.EDS {
+    .collapsible-header{
+        border-bottom: 1px solid $eds-color;
+    }
+    .title{
+        color: $eds-color;
+    }
+}
+
+.Andere {
+    .collapsible-header{
+        border-bottom: 1px solid $other-color;
+    }
+    .title{
+        color: $other-color;
+    }
+}
+
+
+.sources li{
+    font-size: 0.7rem;
+    font-style: italic;
+    list-style-type: square;
+}

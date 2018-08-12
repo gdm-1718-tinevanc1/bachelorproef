@@ -1,0 +1,6 @@
+<ul id="slide-out" class="side-nav fixed">
+    <li *ngFor="let symptom of symptoms" [ngClass]="{'selected':symptom.id == id}"> <a [routerLink]='["/klachten", symptom.id]'class="waves-effect">
+      <fa-icon [icon]="faSquare"></fa-icon>{{symptom.title}}
+    
+    </a></li>
+</ul>

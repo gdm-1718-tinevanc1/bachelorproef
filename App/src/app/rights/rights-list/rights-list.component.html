@@ -1,0 +1,21 @@
+<div class="row">
+    <h3 class="left">Rechten</h3>
+
+    <div class="right select--filter">
+        <label for="type"> Types: </label><br>
+        <select name="type" (change)="getRightsByType($event.target.value)">
+            <option selected="selected" value="all">Alle</option>
+            <option *ngFor="let type of types" value="{{type.name}}">{{type.name}}</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="clear"></div> 
+<div *ngFor="let right of rights">
+    <div class="block" *ngIf="right.country_id == country_id">
+        <div class="header" (click)="collapsible($event)">{{right.name}}<i class="fa fa-caret-down right"></i> </div>
+        <p class="body">{{right.description}}</p>
+    </div>
+</div>
+

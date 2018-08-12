@@ -1,0 +1,37 @@
+<div class="notcopyable">
+
+    <div class="row">
+        <h3 class="left">Oefeningstherapie</h3>
+            
+        <div class="right select--filter">
+            <label for="type"> Category: </label><br>
+            <select name="type" (change)="getExercisesByType($event.target.value)">
+                <option selected="selected" value="all">Alle</option>
+                <option *ngFor="let type of types" value="{{type.name}}">{{type.name}}</option>
+            </select>
+        </div> 
+        <div class="right select--filter">
+            <label for="type"> Types: </label><br>
+            <select name="type" (change)="getTypeCorrect($event.target.value)">
+                <option selected="selected" value="all">Alle</option>
+                <option value="good">Correcte methode</option>
+                <option value="wrong">Slechte methode</option>
+            </select>
+        </div> 
+    </div>
+  <div class="clear"></div> 
+
+  <div class="row exercises">
+    <div *ngFor="let exercise of exercises">
+      <div class="col s4 {{exercise.right}}" *ngIf="exercise.right == typeCorrect || typeCorrect == 'all'">
+        <p> 
+            <span *ngIf="exercise.right == 'good'" class="bold">Goede methode:</span> 
+            <span *ngIf="exercise.right == 'wrong'" class="bold">Slechte methode:</span>   
+          {{exercise.text}}</p>  
+        <div class="row">
+          <div *ngFor="let image of exercise.images" class="col s4"><img src="{{image.url}}"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+#home .navbar-nav{
+    background-color: $white !important;
+
+    ul li a {
+        color: $black;
+    }
+
+    .dropdown-content li a{
+        color: $white;
+        &:hover {
+            color: $black;
+            background-color: $white;
+        }
+    }
+
+    .icons i{
+        color: $black;
+    }
+
+    .select--country{
+        width: 45px;
+        background: none;
+        color: black;
+        border: none;
+    }
+}
+
+#home #offcanvas__header{
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}

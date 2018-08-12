@@ -1,0 +1,49 @@
+
+// Materialize
+// @import "../vendor/materialize/materialize";
+
+
+
+// 2. Vendors
+@import 'vendor/normalize',
+'vendor/materialize';
+
+// 1. Configuration and helpers
+@import 'abstracts/variables',
+'abstracts/functions',
+'abstracts/mixins';
+
+// 3. Base stuff
+@import 'base/base',
+'base/fonts',
+'base/typography',
+'base/helpers';
+
+// 4. Layout-related sections
+@import 'layout/header',
+'layout/footer',
+'layout/sidebar';
+
+// 5. Components
+@import 'components/button';
+@import 'components/form';
+@import 'components/container';
+@import 'components/link';
+@import 'components/pagination';
+@import 'components/list';
+
+// 6. Page-specific styles
+@import 'pages/diseases';
+@import 'pages/news';
+@import 'pages/dashboard';
+
+// $primary-color: color("materialize-red", "lighten-2") !default;
+// // $primary-color-light: lighten($primary-color, 15%) !default;
+// // $primary-color-dark: darken($primary-color, 15%) !default;
+
+
+// $secondary-color: color("light-blue", "accent-2") !default;
+// $success-color: color("green", "base") !default;
+// $error-color: color("red", "base") !default;
+// $link-color: color("light-blue", "darken-1") !default;
+

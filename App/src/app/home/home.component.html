@@ -1,0 +1,52 @@
+<div class="header">
+    <h1>Ik ben hypermobiel, wat nu?</h1>
+
+    <div class="row">
+      <div *ngFor="let disease of diseases" class="col s12 m3">
+        <a [routerLink]='["/info", disease.id]'>
+          <div class="card"> 
+          <div class="border {{disease.shorttitle}}">
+            <h5>{{disease.title}}</h5>
+            <ul class="text">
+              <li *ngFor="let charac of disease.charac_diseases">{{charac.description}}</li>
+            </ul>
+            <i class="fa fa-caret-right right"></i>
+          </div>
+        </div> </a>
+      </div>
+    </div>
+</div> 
+<div class="container">
+  <div class="news">
+    <h4>{{news.title}}</h4>
+    <h5>{{news.subtitle}}</h5>
+    <div class="row">
+      <div class="news__text">
+        {{news.text}}
+      </div>
+    </div>
+    <a class="waves-effect waves-light btn center btn--more" [routerLink]='["/nieuws"]'>Lees meer</a>
+  </div> 
+</div>
+
+
+  <div class="contact">
+    <div class="container">
+    <h4>Contacteer ons</h4>
+    <div class="row">
+      <div class="col s12 m5">
+          <label for="name">Uw naam</label>          
+          <input id="name" type="text" class="validate" [(ngModel)]="contact_credentials.name">
+
+          <label for="email">Uw emailadres</label>          
+          <input id="email" type="text" class="validate" [(ngModel)]="contact_credentials.email">
+      </div>  
+
+      <div class="col s12 m7">
+          <label for="message">Uw bericht</label>          
+          <textarea id="message" type="text" class="validate" [(ngModel)]="contact_credentials.message"></textarea>
+      </div>  
+    </div>
+  </div>
+  <a class="waves-effect waves-light btn" (click)="saveContact()">Versturen</a>
+  </div> 

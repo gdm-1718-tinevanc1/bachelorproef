@@ -1,0 +1,42 @@
+/*.sideButton {
+    width: 100%;
+    text-align: left;
+    margin-left: 0 !important;
+}
+*/
+
+a .svg-inline--fa{
+    margin-right: 10px
+}
+
+.nav-wrapper{
+    background: black;
+}
+
+.side-nav li {
+    background: #000000;
+    padding: 7px 5px;
+    margin-bottom: 15px;
+    a {
+        color: #ffffff;
+    }
+
+    .dropdown-content{
+        height: auto;
+        // margin-top:53px !important;
+        li{
+            margin-top: 3px;
+            margin-bottom: 0px;
+            min-height: 20px;
+        }
+        li>a{
+            padding: initial;
+            padding-right: 25px;
+        }
+        li:hover a{
+            color: #000000;
+        }
+    }
+
+}
+

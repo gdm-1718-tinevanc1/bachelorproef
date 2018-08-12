@@ -1,0 +1,16 @@
+@font-face {
+    font-family:"Lovelo-LineBold";
+    src:url("/../../assets/fonts/Lovelo_Line_Bold.ttf") format("truetype");
+    font-weight:normal;
+    font-style:normal;
+}
+
+
+html{
+    font-family: 'Helvetica Neue', Helvetica,  Arial, sans-serif !important;
+    background-image: "../../assets/zebra.jpg"
+}
+
+#home h1{
+    font-family: 'Lovelo-LineBold';
+}

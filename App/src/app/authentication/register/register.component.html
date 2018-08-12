@@ -1,0 +1,86 @@
+<h3>Account aanmaken</h3>
+
+    <p>
+      <input type="checkbox" id="practitioner" name="practitioner" (ngModelChange)="roleChange()" [(ngModel)]="rolePractitioner"/>
+      <label for="practitioner">Inloggen als behandelaar?</label>
+    </p>
+  <form action="" [formGroup]="form">
+
+    <div *ngIf="rolePractitioner">
+      <div class="input-field">
+        <input placeholder="Riviz-nummer" name="rizivnumber" id="rizivnumber" type="text" class="validate" formControlName="rizivnumber">
+        <label for="rizivnumber">Riviz-nummer (vb. 1-12345-12-123)</label>
+        <p align="start" *ngIf="formErrors.rizivnumber" class="form__error">{{ formErrors.rizivnumber }}</p>
+      </div>
+  
+      <div class="input-field">
+        <input placeholder="Functie" name="function" id="function" type="text" class="validate" formControlName="function">
+        <label for="function">Functie</label>
+        <p align="start" *ngIf="formErrors.function" class="form__error">{{ formErrors.function }}</p>
+      </div>     
+    </div>
+    
+<br>
+    <div class="input-field">
+      <input placeholder="Gebruikersnaam" id="username" name="username" type="text" class="validate" formControlName="username">
+      <label for="username">Gebruikersnaam</label>
+      <p align="start" *ngIf="formErrors.username" class="form__error">{{ formErrors.username }}</p>
+
+    </div>
+    <div class="input-field">
+      <div class="password_eye" (click)="showPassword()"><i *ngIf="!passwordShow" class="fa fa-eye"></i>  <i *ngIf="passwordShow" class="fa fa-eye-slash"></i> </div>
+      <input placeholder="Wachtwoord" id="password" name="password" type="password" class="validate" formControlName="password">
+      <label for="password">Wachtwoord</label>
+
+      <p align="start" *ngIf="formErrors.password" class="form__error">{{ formErrors.password }}</p>
+    </div>
+
+    <div class="input-field">
+      <input placeholder="E-mailadres" id="email" name="email" type="text" class="validate" formControlName="email">
+      <label for="email">E-mailadres</label>
+      <p align="start" *ngIf="formErrors.email" class="form__error">{{ formErrors.email }}</p>
+
+    </div>
+
+    <div class="input-field">
+      <input placeholder="Voornaam" id="firstname" name="firstname" type="text" class="validate" formControlName="firstname">
+      <label for="firstname">Voornaam</label>
+      <p align="start" *ngIf="formErrors.firstname" class="form__error">{{ formErrors.firstname }}</p>
+
+    </div>
+
+    <div class="input-field">
+      <input placeholder="Achternaam" id="lastname" name="lastname" type="text" class="validate" formControlName="lastname">
+      <label for="lastname">Achternaam</label>
+      <p align="start" *ngIf="formErrors.lastname" class="form__error">{{ formErrors.lastname }}</p>
+
+    </div>
+
+    <div class="input-field">
+      <input placeholder="Telefoonnummer" name="phonenumber" id="phonenumber" type="text" class="validate" formControlName="phonenumber">
+      <label for="phonenumber">Telefoonnummer (+32..)</label>
+      <p align="start" *ngIf="formErrors.phonenumber" class="form__error">{{ formErrors.phonenumber }}</p>
+
+    </div>
+
+    <div class="input-field">
+      <input placeholder="Stad" id="city" name="city" type="text" class="validate" formControlName="city">
+      <label for="city">Stad</label>
+      <p align="start" *ngIf="formErrors.city" class="form__error">{{ formErrors.city }}</p>
+
+    </div>
+
+    <label for="country">Land</label>
+    <select id="country" name="country" formControlName="country_id">
+      <option *ngFor="let country of countries" value="{{country.id}}">{{country.name}}</option>
+    </select>
+    <p align="start" *ngIf="formErrors.country_id" class="form__error">{{ formErrors.country_id }}</p>
+
+
+    <br>
+
+   
+    <a class="waves-effect waves-light btn" (click)="save()">Registreren</a>
+</form>  
+
+<p class="link--register">Al reeds een account? <a [routerLink]='["/register"]'> Meld u hier aan</a></p>

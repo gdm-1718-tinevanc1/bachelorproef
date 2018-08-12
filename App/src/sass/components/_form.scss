@@ -1,0 +1,72 @@
+/* label focus color */
+.input-field input:focus + label {
+    color: $primary-color !important;
+  }
+  /* label underline focus color */
+  .row .input-field input:focus {
+    border-bottom: 1px solid $primary-color !important;
+    box-shadow: 0 1px 0 0 $primary-color !important
+  }
+  
+  .input-field textarea:focus + label {
+    color: $primary-color !important;
+  }
+  /* label underline focus color */
+  .row .input-field textarea:focus {
+    border-bottom: 1px solid $primary-color !important;
+    box-shadow: 0 1px 0 0 $primary-color !important
+  }
+  
+  
+  input:not(.browser-default):focus{
+    border-bottom: 1px solid $primary-color !important;
+    box-shadow: 0 1px 0 0 $primary-color !important
+  }
+
+
+select:focus {
+    outline: none;
+}
+
+
+input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:not(.browser-default), input[type=text].valid:not(.browser-default):focus, 
+input[type=password].valid:not(.browser-default), input[type=password].valid:not(.browser-default):focus, input[type=email].valid:not(.browser-default), 
+input[type=email].valid:not(.browser-default):focus, input[type=url].valid:not(.browser-default), input[type=url].valid:not(.browser-default):focus, 
+input[type=time].valid:not(.browser-default), input[type=time].valid:not(.browser-default):focus, input[type=date].valid:not(.browser-default), 
+input[type=date].valid:not(.browser-default):focus, input[type=datetime].valid:not(.browser-default), input[type=datetime].valid:not(.browser-default):focus, 
+input[type=datetime-local].valid:not(.browser-default), input[type=datetime-local].valid:not(.browser-default):focus, input[type=tel].valid:not(.browser-default), 
+input[type=tel].valid:not(.browser-default):focus, input[type=number].valid:not(.browser-default), input[type=number].valid:not(.browser-default):focus, 
+input[type=search].valid:not(.browser-default), input[type=search].valid:not(.browser-default):focus, textarea.materialize-textarea.valid, 
+textarea.materialize-textarea.valid:focus, .select-wrapper.valid > input.select-dropdown
+{
+  border-bottom: 1px solid $primary-color;
+  -webkit-box-shadow: 0 1px 0 0 $primary-color;
+  box-shadow: 0 1px 0 0 $primary-color;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: inset 0 0 0px 9999px white !important;
+}
+
+[type="radio"]:checked + label:after,
+[type="radio"].with-gap:checked + label:after
+ {
+  background-color: #BC95A5;
+  border-color: #BC95A5;
+}
+
+[type="checkbox"]:checked + label:before {
+  border-right-color:  #BC95A5;
+  border-bottom-color:  #BC95A5;
+}
+
+label{
+  color: #000000;
+}

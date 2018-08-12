@@ -1,0 +1,140 @@
+
+<div class='main-nav'>
+    <div class='navbar navbar-inverse'>
+        <div id="offcanvas__header">
+                 <div class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse' [attr.aria-expanded]='isExpanded' (click)='toggle()'>
+                        <i *ngIf="!isExpanded" class="fa fa-bars"></i>
+
+                        <i *ngIf="isExpanded" class="fa fa-times"></i>
+                 </div>    
+        </div>
+
+        <div *ngIf="isExpanded" id="offcanvas__navigation" class="collapse" [ngClass]='{ "in": isExpanded }'>
+
+            <ul class='nav navbar-nav'>
+                    <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                            <a [routerLink]='["/"]'>
+                               Home
+                            </a>
+                        </li>
+                       <li>
+                            <p>Info</p>
+                            <hr>
+                      
+                            <ul>
+                                <li *ngFor="let disease of diseases" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/info", disease.id]'>{{disease.shorttitle}}</a></li>
+                            </ul>
+                       </li>
+                      
+                        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                            <a [routerLink]='["/klachten/1"]'>
+                                  Klachtenprofiel
+                            </a>
+                        </li>
+                        <li>
+                            <p>Voor patienten</p>
+                            <hr>
+                      
+                            <ul>
+                              <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/hulpmiddelen"]'>Hulpmiddelen</a></li>
+                              <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/rechten"]'>Recht op</a></li>
+                              <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/behandelaars"]'>Behandelaars</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p>Andere</p>
+                            <hr>
+                      
+                            <ul>
+                              <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/faqs"]'>Veel gestelde vragen</a></li>
+                              <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/checklist"]'>Criteria-lijsten</a></li>
+                            </ul>
+                        </li>
+                  
+                          <li  *ngIf="role == 'Behandelaar' || role == 'Admin'">
+                              <p>Voor behandelaars</p>
+                                <hr>
+                              <ul>
+                                  <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/manueletherapie"]'>Manuele therapie</a></li>
+                                  <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/oefeningstherapie"]'>Oefeningstherapie</a></li>
+                                  <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/voorbeeldsoefeningen"]'>Voorbeelden</a></li>
+                              </ul>
+                          </li>
+
+                           <li *ngIf="!authenticated" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/login"]'>Inloggen</a></li>
+            
+                            <li *ngIf="authenticated" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/profiel/edit"]'>Profiel</a></li>
+                            <li *ngIf="authenticated" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a (click)="logout()">Uitloggen</a></li>
+                            
+                       
+             </ul>
+        </div>
+
+        <div id="navigation" class='nav navbar-nav' [ngClass]='{ "in": isExpanded }'>
+                <ul>
+                  <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                      <a [routerLink]='["/"]'>
+                         Home
+                      </a>
+                  </li>
+                 <li>
+                    <a class='dropdown-button btn' href='#' data-activates='dropdownInfo'>Info</a>
+                      <ul id='dropdownInfo' class='dropdown-content'>
+                            <li *ngFor="let disease of diseases" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/info", disease.id]'>{{disease.shorttitle}}</a></li>
+                        </ul>
+                 </li>
+                
+                  <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+                      <a [routerLink]='["/klachten/1"]'>
+                            Klachtenprofiel
+                      </a>
+                  </li>
+                  <li>
+                      <a class='dropdown-button btn' href='#' data-activates='dropdownPatient'>Voor patienten</a>
+                
+                      <ul id='dropdownPatient' class='dropdown-content'>
+                        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/hulpmiddelen"]'>Hulpmiddelen</a></li>
+                        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/rechten"]'>Recht op</a></li>
+                        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/behandelaars"]'>Behandelaars</a></li>
+                      </ul>
+                  </li>
+                  <li>
+                      <a class='dropdown-button btn' href='#' data-activates='dropdownOther'>Andere</a>
+                
+                      <ul id='dropdownOther' class='dropdown-content'>
+                        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/faqs"]'>Veel gestelde vragen</a></li>
+                        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/checklist"]'>Criteria-lijsten</a></li>
+                      </ul>
+                  </li>
+            
+                    <li  *ngIf="role == 'Behandelaar' || role == 'Admin'">
+                        <a class='dropdown-button btn' href='#' data-activates='dropdownBehandelaar'>Voor behandelaars</a>
+                
+                        <ul id='dropdownBehandelaar' class='dropdown-content'>
+                            <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/manueletherapie"]'>Manuele therapie</a></li>
+                            <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/oefeningstherapie"]'>Oefeningstherapie</a></li>
+                            <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/voorbeeldsoefeningen"]'>Voorbeelden</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            
+                <ul class="right icons">
+                    <li *ngIf="!authenticated" [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/login"]'>Inloggen</a></li>
+            
+                    <li class="icon--user" *ngIf="authenticated">
+                        <a class='dropdown-button btn' href='#' data-activates='dropdown'><i class="fa fa-user" aria-hidden="true"></i></a>
+              
+                        <ul id='dropdown' class='dropdown-content'>
+                            <li  [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a [routerLink]='["/profiel/edit"]'>Profiel</a></li>
+                            <li  [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'><a (click)="logout()">Uitloggen</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                            <select class="select--country" name="type"  [(ngModel)]="selectedCountry_id" (change)="changeCountry($event.target.value)">
+                               <option *ngFor="let country of countries" value="{{country.id}}">{{country.code}}</option>
+                           </select>
+                       </li>
+                </ul>
+            </div>
+    </div>
+</div> 

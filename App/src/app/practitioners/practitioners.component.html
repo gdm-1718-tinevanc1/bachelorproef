@@ -1,0 +1,36 @@
+<h3>Behandelaar zoeken</h3>
+
+<p>
+  Welke behandelaar zoekt u? 
+</p>
+
+<form [formGroup]="form">
+  <div class="input-field">
+    <input placeholder="Regio" id="place" type="text" class="validate" formControlName="regio" required>
+    <label for="place">Regio:</label> 
+    <p align="start" *ngIf="formErrors.regio" class="form__error">{{ formErrors.regio }}</p>
+
+  </div>
+  
+  <label for="type"> Type: </label><br>
+  <select name="type"  formControlName="type_practitioner_id" required>
+    <option *ngFor="let type of typepractitioners"  value="{{type.id}}">{{type.name}}</option>
+  </select>
+  <p align="start" *ngIf="formErrors.type_practitioner_id" class="form__error">{{ formErrors.type_practitioner_id }}</p>
+
+  <br>
+  <br>
+  
+  <div class="input-field">
+    <input placeholder="Uw e-mailadres" id="email" type="text" class="validate"  formControlName="email"  required>
+    <label for="email">Uw e-mailadres:</label>
+
+    <p align="start" *ngIf="formErrors.email" class="form__error">{{ formErrors.email }}</p>
+
+  </div>
+    
+    <br>
+  
+  <a class="waves-effect waves-light btn" (click)="save()">Versturen</a>
+  
+</form>

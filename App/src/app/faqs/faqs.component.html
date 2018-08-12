@@ -1,0 +1,7 @@
+<h3>Veel gestelde vragen</h3>
+<div *ngFor="let faq of faqs">
+  <div class="block"> <!--  *ngIf="right.country_id == country_id" -->
+      <div class="header" (click)="collapsible($event)">{{faq.question}}<i class="fa fa-caret-down right"></i> </div>
+      <p class="body">{{faq.answer}}</p>
+  </div>
+</div>
