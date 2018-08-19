@@ -24,11 +24,26 @@
     color: $primary-color;
 }
 
-.subtitle{
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 hr{
     border: 0.5px solid $primary-color;
+}
+
+.info{
+    font-size: 0.9rem;
+}
+
+
+
+
+.body{
+    display: none;
+}
+
+.header{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.block{
+    padding-bottom: 20px;
 }

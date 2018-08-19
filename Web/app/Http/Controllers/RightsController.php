@@ -51,9 +51,6 @@ class RightsController extends Controller
             'country_id' => 'required',
         ]);
 
-        // location
-        //type
-
         Right::create([
             'name' => request('name'),
             'description' => request('description'),

@@ -10,7 +10,7 @@
 @section('content')
     <h5> Maak een aandoenings type aan</h5>
 
-    <form method="POST" action="/type_diseases" enctype="multipart/form-data">
+    <form method="POST" action="/type_diseases/{{$id}}" enctype="multipart/form-data">
         {{ csrf_field() }}
 
 
@@ -37,10 +37,10 @@
         <div class="file-field input-field col s6">
             <div class="btn">
                 <span><i class="fas fa-images"></i></span>
-                <input id="image" name="image[]" type="file" value="{{ old('image') }}"  multiple required>
+                <input id="image" name="image[]" type="file" value="{{ old('image') }}"  multiple>
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" required>
+                <input class="file-path validate" type="text">
             </div>
         </div>
         

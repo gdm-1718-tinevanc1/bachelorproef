@@ -1,32 +1,40 @@
 <div>
     <h3>Hulpmiddelen</h3>
 
+    <p class="info">Hulpmiddelen hebben kunnen bij bepaalde klachten ondersteuning bieden, pijn verlichten en dagelijks activiteiten gemakkelijker maken. 
+        Ze dienen echter wel altijd gekozen te worden in overleg met een gespecialiseerde arts/bandagist/orthopedist, 
+        en gebruikt te worden volgens hun aanwijzingen. Het doel is bepaalde gewrichten, spieren,pezen te ontlasten en 
+        (sub)luxaties te vermijden, maar een verkeerd of overmatig gebruik kan bijkomend blijvend letsel veroorzaken. </p>
+
+    <p class="bold">Klik op een lichaamsdeel:</p>
+
   <div class="row">
       <div class="col s12 m6">
+        
         <div (click)="getPart($event)" id="bodySvg" class="bodySvg"></div>
 
       </div>
       <div class="col s12 m6">
-        <h5 class="title">{{title}}</h5>
-          <ul>
-              <li *ngFor="let device of devices">
-                <p class="subtitle">{{device.name}}</p>
-                {{device.procedure}}
-                <h6 class="bold">Instantie:</h6>
-                {{device.type_agency.name}}
-                <h6 class="bold">Bij wie te verkrijgen?</h6>
-                <ul>
-                  <li *ngFor="let practitioner of device.type_practitioners">
-                    {{practitioner.name}}
-                  </li>
-                </ul>
+        
 
-                <ul>
-                  <img class="device__image" *ngFor="let image of device.images" [src]="image.url">
-                </ul>
-                <hr>
-              </li>
-            </ul>      
+        <h5 class="title">{{title}}</h5>      
+            <div *ngFor="let device of devices">
+                <div class="block">
+                    <div class="header" (click)="collapsible($event)">{{device.name}}<i class="fa fa-caret-down right"></i> </div>
+                    <div class="body">
+                        {{device.intention}}
+                        <p class="bold">Procedure</p>
+                        {{device.procedure}}
+                        <h6 class="bold">Terugbetaald door:</h6>
+                        {{device.type_agency.name}}
+                        <ul>
+                          <img class="device__image" *ngFor="let image of device.images" [src]="image.url">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            
       </div>
   </div>
 </div>

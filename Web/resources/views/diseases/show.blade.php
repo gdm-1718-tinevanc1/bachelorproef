@@ -10,7 +10,7 @@
     <ul class="collapsible popout" data-collapsible="accordion">
         <li>
           <div class="collapsible-header active">Info</div>
-          <div class="collapsible-body"><span> {{ $disease->description }}
+          <div class="collapsible-body"><span> {!!html_entity_decode($disease->description)!!}
             <h6>Kenmerken:</h6>
             <ul class="list--square">
             @foreach($disease->characDiseases as $charac)
@@ -38,19 +38,19 @@
             @if($typeDiseases->info)
             <li>
                 <div class="collapsible-header">Info</div>
-                <div class="collapsible-body"><span>{{$typeDiseases->info}}</span></div>
+                <div class="collapsible-body"><span>{!!html_entity_decode($typeDiseases->info)!!}</span></div>
             </li>
             @endif
             @if($typeDiseases->criteria)
             <li>
                 <div class="collapsible-header">Criteria</div>
-                <div class="collapsible-body"><span>{{$typeDiseases->criteria}}</span></div>
+                <div class="collapsible-body"><span>{!!html_entity_decode($typeDiseases->criteria)!!}</span></div>
             </li>
             @endif
             @if($typeDiseases->diagnose)
             <li>
                 <div class="collapsible-header">Diagnose</div>
-                <div class="collapsible-body"><span>{{$typeDiseases->diagnose}}</span></div>
+                <div class="collapsible-body"><span>{!!html_entity_decode($typeDiseases->diagnose)!!}</span></div>
             </li>
             @endif
         </ul>
@@ -63,7 +63,7 @@
 
     @endforeach
 
-    <div style="margin-top:20px"><a class="btn right" href="{{ url('/type_diseases/create') }}">
+    <div style="margin-top:20px"><a class="btn right"  href="/type_diseases/{{$disease->id}}/create">
         <i class="fa fa-plus" aria-hidden="true"></i>
         Maak een nieuwe type aan
     </a></div>

@@ -41,7 +41,6 @@ export class ExerciseComponent implements OnInit {
 
   getTypeCorrect(event){
     this.typeCorrect = event;
-    console.log(this.typeCorrect)
   }
 
 }

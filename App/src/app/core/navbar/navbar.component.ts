@@ -49,7 +49,7 @@ export class NavbarComponent implements OnInit {
     this.role = this.authenticationService.user.role;
 
     this.diseaseService.getDiseases().subscribe(
-      result => { this.diseases = result, console.log(this.diseases) },
+      result => { this.diseases = result},
       err => console.log('err')
     )
   }

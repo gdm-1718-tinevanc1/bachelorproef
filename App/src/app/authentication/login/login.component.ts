@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
      }
 
   ngOnInit() {
-    console.log(this.authenticationService.user.authenticated);
+    console.log(this.formErrors);
   }
 
   save(){

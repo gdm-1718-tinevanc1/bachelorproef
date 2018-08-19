@@ -2,6 +2,7 @@
     margin-top: 20px;
     & > .col{
         margin-bottom: 20px;
+        height: 200px;
     }
     .good{
         border-top: green 1px solid;
@@ -10,4 +11,3 @@
         border-top: red 1px solid;
     }
 }
-

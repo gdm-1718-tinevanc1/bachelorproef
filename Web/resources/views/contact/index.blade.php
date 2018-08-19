@@ -27,7 +27,7 @@
                 </td>
 
                 <td>
-                    {{ $form->message }}
+                    {{ str_limit($form->message , $limit = 50, $end = '...') }}
                 </td>
 
                 <td>

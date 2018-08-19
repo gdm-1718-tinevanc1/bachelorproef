@@ -27,11 +27,11 @@ class FaqTableSeeder extends Seeder
             een uitgebriede klinisch onderzoek en bevraging.'],
             ['subject' => 'Ziekte-erkenning', 'question' => 'Hoe zit het met hEDS en ziekte-erkenning?', 
             'answer' => 'In de voorbije jaren won hEDS aan bekendheid. Toch wordt de aandoening vaak nog niet erkend door mutualiteiten en andere instanties. Op vlak van kinesitherapie is het meestal mogelijk om een E-pathologie aan te vragen,
-            mits de behandelende huisars of fysich geneesheer en de behandelende kinesitherapeut zorgen voor een uitgebreide documentatie van: De gewrichtslaxiteit, de problemen op vlak van motorische controle, de spierzwakte en de functionele beperkingen in het dagelijke leven.'],
+            mits de behandelende huisarts of fysisch geneesheer en de behandelende kinesitherapeut zorgen voor een uitgebreid documentatie van: De gewrichtslaxiteit, de problemen op vlak van motorische controle, de spierzwakte en de functionele beperkingen in het dagelijks leven.'],
             ['subject' => 'Bloedonderzoek', 'question' => 'Kan ik meerdere types hebben?', 
             'answer' => 'Dit is zeer zeldzaam. In theorie is het mogelijk dat iemand 1 type EDS erft van de ene ouder, en een andere type EDS van de andere ouder.
             Er zijn echter geen gevallen bekend waarin dit zo voorkomt. Het is wel mogelijk dat je ziektetekenen vertoont die bij verschillende EDS-types voorkomen.
-            Patiënten met het vasculaire type EDS kunnen bijvoorbeeld ook hypermobiliteit vertonen, en patiënten met het hypermobiliele type van EDS kunnen ook een milde verwijding van de aorta vertonen, of problemen met de hartkleppen.'],
+            Patiënten met het vasculaire type EDS kunnen bijvoorbeeld ook hypermobiliteit vertonen, en patiënten met het hypermobiele type van EDS kunnen ook een milde verwijding van de aorta vertonen, of problemen met de hartkleppen.'],
             ['subject' => 'Bloedonderzoek', 'question' => 'Ik heb POTS, maagdarmklachten, vermoeidheid, mast cell dysfunctie, spierkrampen,.. waarom heb ik geen hEDS?', 
             'answer' => 'Deze klachten komen niet alleen bij hEDS voor, maar ook bij verschillende andere aandoeningen, zoals fibromyalgie, het chronisch vermoeidheidssyndroom en HSD.'],
             ['subject' => 'Rekbare huid', 'question' => 'Wat verstaat men onder een rekbare huid?', 

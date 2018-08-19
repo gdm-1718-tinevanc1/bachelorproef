@@ -28,7 +28,7 @@
                 </td>
 
                  <td>
-                    {{ $type_exercisetherapy->description }}
+                 {{ str_limit($type_exercisetherapy->description, $limit = 50, $end = '...') }}
                 </td>
 
                 <td>

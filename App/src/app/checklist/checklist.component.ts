@@ -125,33 +125,6 @@ export class ChecklistComponent implements OnInit {
     doc.setFontType('normal')
     doc.text(15, 30, "/9 beighton score")
 
-    // lines = doc.splitTextToSize("Wanneer de onderarm en hand plat op tafel liggen en de elleboog 90 graden gebogen,kan de pink meer dan 90 graden passief (met hulp) omhoog worden gebogen ten opzichte van de hand", 190);
-    // doc.text(10, 15, lines)
-
-    // doc.text("Links", 14, 25);
-    // doc.text("Rechts", 14, 35);
-
-    // lines = doc.splitTextToSize("Met gestrekte arm naar voren kan de duim passief (met hulp) tegen de onderarm worden bewogen.", 190);
-    // doc.text(10, 45, lines)
-
-    // doc.text("Links", 14, 55);
-    // doc.text("Rechts", 14, 65);
-    // lines =  doc.splitTextToSize("Met de arm gestrekt opzij en de hand met handpalm naar boven omlaag gebogen kan de elleboog meer dan 10 graden overstrekken. ",190);
-    // doc.text(10, 75 , lines)
-
-    // doc.text("Links", 14, 85);
-    // doc.text("Rechts", 14, 95);
-
-    // lines = doc.splitTextToSize("Staand kan de knie meer dan 10 graden overstrekken.", 190);
-    // doc.text(10, 105, lines)
-
-    // doc.text("Links", 14, 115);
-    // doc.text("Rechts", 14, 125);
-
-    // lines = doc.splitTextToSize("Staand met rechte knieën en benen tegen wanneer met vlakke handen de vloer kan worden aangeraakt. ", 190);
-    // doc.text(10, 135, lines)
-    
-
     /************* */
     doc.setFontSize(15);
     doc.text('Systemische kenmerken', 10, 47);
@@ -236,7 +209,7 @@ export class ChecklistComponent implements OnInit {
     doc.text(10, 210, lines)
 
 
-    doc.save('test.pdf');
+    doc.save('checklist.pdf');
   }
 
 }

@@ -53,9 +53,6 @@ class SymptomsController extends Controller
             ]);
         }
 
-        // location
-        //type
-
         $symptom = new Symptom([
             'title' => request('title'),
             'info' => request('info'),

@@ -20,11 +20,6 @@
         {{$types->name}}
     @endforeach
 
-    <!-- <h6>Voorgeschreven door</h6>
-    @foreach ($device->typePractitioners as $type)
-        {{ $type->name }}
-    @endforeach -->
-
     <div class="row">
         @foreach($device->images as $image)
             <div class="col s4"><img src="{{$image->url}}"></div>

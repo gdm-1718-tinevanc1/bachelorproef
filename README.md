@@ -10,7 +10,7 @@ Bachelorproef
 
 Documenten
 -------------
-- [productiedossier.pdf](docs/productiedossier.pdf)
+- [productiedossier.pdf](docs/dossier.pdf)
 - [timesheet Tine (excel)](docs/Timesheet_Tine_Vancoillie.xlsx)
 
 
@@ -24,6 +24,16 @@ Auteur
 - tine.vancoillie1@student.arteveldehs.be
 
 
+Online website
+-------------
+- Frontoffice: *https://ehlersdanlos.000webhostapp.com/*
+- Backoffice: *https://ehlersdanlossite.000webhostapp.com/*
+
+**Login-gegevens**
+- Admin gebruikersnaam: *admin*
+- Admin emailadres: *admin@test.be*
+- Admin wachtwoord: *secret*
+
 Deployment
 -------------
 **Clone online repository**
@@ -32,6 +42,8 @@ Deployment
 
 **Backoffice starten**
 - *cd bachelorproef/Web*
+- *php artisan migrate*
+- *php artisan db:seed*
 - *php artisan serve*
 - ga naar: http://127.0.0.1:8000/home
 
@@ -41,6 +53,9 @@ Deployment
 - ga naar: http://localhost:4200/
 
 **Login-gegevens**
-- Admin gebruikersnaam: *bachelor-user*
-- Admin wachtwoord: *bachelor-pass*
+- Admin gebruikersnaam: *admin*
+- Admin emailadres: *admin@test.be*
+- Admin wachtwoord: *secret*
+
+
 

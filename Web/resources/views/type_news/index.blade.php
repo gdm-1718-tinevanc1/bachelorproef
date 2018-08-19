@@ -29,7 +29,7 @@
                 </td>
 
                  <td>
-                    {{ $type_new->description }}
+                    {{ str_limit($type_new->description, $limit = 50, $end = '...') }}
                 </td>
 
                 <td>

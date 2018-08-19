@@ -24,11 +24,11 @@
             <input type="text" class="form-control" id="subtitle" name="subtitle" value="{{ old('subtitle') }}" required >
         </div>
 
-
         <div class="input-field col s12">
-            <label for="text">Tekst</label>
-            <textarea type="text" class="form-control" id="text" name="text">{{ old('text') }} </textarea>
+          <textarea id="text" name="text" class="materialize-textarea" required>{{ old('text') }}</textarea>
+          <label for="text">Tekst</label>
         </div>
+
 
         <div class="input-field col s12">
             <label for="date">Datum</label>

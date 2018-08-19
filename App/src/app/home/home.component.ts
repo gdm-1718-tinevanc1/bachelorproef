@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.diseaseService.getDiseases().subscribe(
-      result => { this.diseases = result, console.log(this.diseases)},
+      result => { this.diseases = result},
       err => console.log('err')
     )
 

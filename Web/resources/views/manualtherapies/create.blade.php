@@ -18,10 +18,13 @@
             <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}" required >
         </div>
 
+
         <div class="input-field col s12">
-            <label for="text">Tekst</label>
-            <textarea type="text" class="form-control" id="text" name="text" value="{{ old('text') }}" required > </textarea>
+          <textarea id="text" name="text" class="materialize-textarea" required>{{ old('text') }}</textarea>
+          <label for="text">Tekst</label>
         </div>
+
+        
 
         <div class="col s12">
             <button type="submit" class="btn btn-primary">Toevoegen</button>

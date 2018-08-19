@@ -43,7 +43,13 @@ export class DiseasesDetailComponent implements OnInit {
   }
 
   collapsible($event){
-    var body = $($event.target).next(); 
+    let body;
+    if($(event.target).hasClass('fa')){
+      let parent = $($event.target).parent(); 
+      body = parent.next(); 
+    } else{
+      body = $($event.target).next(); 
+    }
     body.css("display", body.css("display") === 'block' ? 'none' : 'block');
   }
 

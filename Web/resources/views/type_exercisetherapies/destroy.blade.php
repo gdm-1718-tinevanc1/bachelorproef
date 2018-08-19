@@ -11,7 +11,7 @@
 
         Ben je zeker dat je dit type oefeningtherapie wil verwijderen?
 
-        <div class="col s12">
+        <div class="col s12 delete">
             <button type="submit" class="btn btn-primary">Verwijderen</button>
         </div>
     </form>

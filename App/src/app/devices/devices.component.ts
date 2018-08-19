@@ -42,7 +42,6 @@ export class DevicesComponent implements OnInit {
     this.deviceService.getDevicesByType(type).subscribe(
       data => {
         this.devices = data
-        console.log(this.devices)
       });
   }
 
@@ -53,5 +52,16 @@ export class DevicesComponent implements OnInit {
 
       this.router.navigate(['/hulpmiddelen', e.target.id]);
     }
+  }
+
+  collapsible($event){
+    let body;
+    if($(event.target).hasClass('fa')){
+      let parent = $($event.target).parent(); 
+      body = parent.next(); 
+    } else{
+      body = $($event.target).next(); 
+    }
+    body.css("display", body.css("display") === 'block' ? 'none' : 'block');
   }
 }

@@ -23,14 +23,14 @@
 
   <div class="row exercises">
     <div *ngFor="let exercise of exercises">
-      <div class="col s4 {{exercise.right}}" *ngIf="exercise.right == typeCorrect || typeCorrect == 'all'">
+      <div class="col s4 block {{exercise.right}}" *ngIf="exercise.right == typeCorrect || typeCorrect == 'all'">
         <p> 
             <span *ngIf="exercise.right == 'good'" class="bold">Goede methode:</span> 
             <span *ngIf="exercise.right == 'wrong'" class="bold">Slechte methode:</span>   
           {{exercise.text}}</p>  
-        <div class="row">
+        <!-- <div class="row">
           <div *ngFor="let image of exercise.images" class="col s4"><img src="{{image.url}}"></div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

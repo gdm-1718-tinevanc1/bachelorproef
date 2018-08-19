@@ -13,7 +13,7 @@ class ForgotPasswordController extends Controller
         if(!$this->validateEmail($request->email)){
             return response()->json([
                 'error' => 'Email bestaat niet in onze database'
-            ], \Response::HTTP_NOT_FOUND);
+            ]);
         }
 
         $this->send($request->email);

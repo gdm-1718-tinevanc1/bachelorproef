@@ -16,7 +16,9 @@ class TypeExercisetherapyTableSeeder extends Seeder
             ['name' => 'Hyperlaxiteit', 'description' => 'Oefentherapie aanpassen aan hyperlaxiteit'],
             ['name' => 'Weefselfragiliteit', 'description' => 'Oefentherapie aanpassen aan weefselfragiliteit'],
             ['name' => 'Botfragiliteit', 'description' => 'Oefentherapie aanpassen aan botfragiliteit'],
+            ['name' => 'Vasculaire fragiliteit ', 'description' => 'Oefentherapie aanpassen aan vasculaire fragiliteit'],
         ];
+
 
         TypeExercisetherapy::insert($typeExercisetherapy);
     }

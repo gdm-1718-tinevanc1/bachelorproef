@@ -6,7 +6,7 @@
 export const environment = {
   production: false,
   bachelorAPI: {
-    url: 'https://ehlersdanlossite.000webhostapp.com/api/v1',
+    url: 'http://localhost:8000/api/v1',
     endPoints: {
       diseases: '/diseases',
       rights: '/rights',
@@ -33,7 +33,4 @@ export const environment = {
     }
   }
 };
-
-
-
 

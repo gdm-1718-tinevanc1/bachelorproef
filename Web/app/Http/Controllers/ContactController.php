@@ -49,6 +49,5 @@ class ContactController extends Controller
 
         return redirect('/contact');
 
-        //die('test');
     }
 }

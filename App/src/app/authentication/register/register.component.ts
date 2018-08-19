@@ -57,7 +57,6 @@ export class RegisterComponent implements OnInit {
     this.countriesService.getCountries().subscribe(
       data => {
         this.countries = data
-        console.log(this.countries);
       },
       err => console.error(err),
      );
@@ -78,9 +77,29 @@ export class RegisterComponent implements OnInit {
   roleChange(){
     if(!this.rolePractitioner){
       this.form = this.fb.group({
+        username: ['', Validators.required],
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['', Validators.required],
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        phonenumber: ['', Validators.compose([Validators.required, Validators.pattern('(^\\+[0-9]{2}|^\\+[0-9]{2}\\(0\\)|^\\(\\+[0-9]{2}\\)\\(0\\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\\-\\s]{10}$)')])],
+        city: ['', Validators.required],
+        country_id: ['', Validators.required],
         rizivnumber: ['', Validators.required, Validators.pattern('^[0-9]-[0-9]{5}-[0-9]{2}-[0-9]{3}$')],
         function: ['', Validators.required],
       })
+    } else{
+      this.form = this.fb.group({
+        username: ['', Validators.required],
+        email: ['', Validators.compose([Validators.required, Validators.email])],
+        password: ['', Validators.required],
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required],
+        phonenumber: ['', Validators.compose([Validators.required, Validators.pattern('(^\\+[0-9]{2}|^\\+[0-9]{2}\\(0\\)|^\\(\\+[0-9]{2}\\)\\(0\\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\\-\\s]{10}$)')])],
+        city: ['', Validators.required],
+        country_id: ['', Validators.required],
+      });
+
     }
   }
 

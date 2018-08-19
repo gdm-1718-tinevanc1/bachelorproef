@@ -66,7 +66,6 @@ class AskPractitionersController extends Controller
             $practitioners = Practitioner::all();
         }
 
-        // $practitioners = Practitioner::all();
         $type_practitioners = TypePractitioner::all();
         $regions = Location::selectRaw('ANY_VALUE(id) as id, city')->groupBy('city')->get();
 
@@ -96,6 +95,5 @@ class AskPractitionersController extends Controller
 
         return redirect('/askpractitioners');
 
-        //die('test');
     }
 }

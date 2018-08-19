@@ -25,12 +25,12 @@
         @foreach ($manualtherapies as $manualtherapy)
             <tr>
                 <td>
-                {{ $manualtherapy->title }}
+                {{ str_limit($manualtherapy->title, $limit = 40, $end = '...') }}
                 </td>
 
 
                 <td>
-                {{ str_limit($manualtherapy->text, $limit = 50, $end = '...') }}
+                {!!html_entity_decode(str_limit($manualtherapy->text, $limit = 50, $end = '...'))!!}
                 </td>
 
                 <td>

@@ -31,8 +31,8 @@
 
 
 
+        <label for="characDiseases">Kenmerken</label>
         <div id="dynamic_field" class="input-field col s12">  
-            <label for="characDiseases">Kenmerken</label>
             <input type="text" class="form-control" id="characDiseases" name="characDiseases[]">
         </div>
         <div class="input-field col s12">

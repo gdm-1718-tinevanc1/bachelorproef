@@ -145,7 +145,6 @@ export class ProfileEditComponent implements OnInit {
   save(){
     this.profilesService.save(this.creds).subscribe(
       res => {
-        console.log('oke')
         this._flashMessagesService.show('Uw profiel is aangepast!', { cssClass: 'alert-success', timeout: 3000 });
       },
       err => {
@@ -163,7 +162,6 @@ export class ProfileEditComponent implements OnInit {
   softDelete(){
     this.profilesService.softdelete(this.creds.id).subscribe(
       res => {
-        console.log('oke')
         this.router.navigate(['']);
         this.authenticationService.logout();
         this._flashMessagesService.show('Uw profiel is verwijderd!', { cssClass: 'alert-success', timeout: 3000 });
@@ -180,7 +178,6 @@ export class ProfileEditComponent implements OnInit {
   hardDelete(){
     this.profilesService.forcedelete(this.creds.id).subscribe(
       res => {
-        console.log('oke')
         this.router.navigate(['']);
         this.authenticationService.logout();
         this._flashMessagesService.show('Uw profiel is permanent verwijderd!', { cssClass: 'alert-success', timeout: 3000 });

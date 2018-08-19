@@ -609,6 +609,11 @@ a .svg-inline--fa {
   font-weight: 500;
 }
 
+.delete {
+  padding: 0;
+  margin-top: 20px;
+}
+
 /* label focus color */
 
 .input-field input:focus + label {

@@ -121,7 +121,16 @@ class UsersController extends Controller
         $user->username  = request('username');
         $user->email = request('email');
         $user->save();
-  
+        
+        $profile = $user->profile;
+
+        $profile_medical_id = $profile->getAttribute('profile_medical_id');
+        $profile_medical = ProfileMedical::find($profile_medical_id);
+        if(empty($profile_medical)){
+            $profile_medical = new ProfileMedical;
+        } else {
+            $profile_medical = ProfileMedical::find($profile_medical_id);
+        }
     
 
         $location_id = $profile->getAttribute('location_id');
@@ -237,13 +246,6 @@ class UsersController extends Controller
         $profile_luxation->fingers = $request->input('profile.profile_medical.profile_luxation.fingers');
         $profile_luxation->save();
 
-        $profile_medical_id = $profile->getAttribute('profile_medical_id');
-        $profile_medical = ProfileMedical::find($profile_medical_id);
-        if(empty($profile_medical)){
-            $profile_medical = new ProfileMedical;
-        } else {
-            $profile_medical = ProfileMedical::find($profile_medical_id);
-        }
         $profile_medical->howfar = $request->input('profile.profile_medical.howfar');
         $profile_medical->note = $request->input('profile.profile_medical.note');
         $profile_medical->profile_walktool_id = $profile_walktool->getAttribute('id');

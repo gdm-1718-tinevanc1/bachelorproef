@@ -23,10 +23,9 @@
             </select>
         </div>
 
-
         <div class="input-field col s12">
-            <label for="text">Tekst</label>
-            <textarea type="text" class="form-control" id="text" name="text" value="{{ old('text') }}" required > </textarea>
+          <textarea id="text" name="text" class="materialize-textarea" required>{{old('text')}}</textarea>
+          <label for="text">Tekst</label>
         </div>
 
          <p>
@@ -44,10 +43,10 @@
         <div class="file-field input-field col s6">
             <div class="btn">
                 <span><i class="fas fa-images"></i></span>
-                <input id="image" name="image[]" type="file" value="{{ old('image') }}"  multiple required>
+                <input id="image" name="image[]" type="file" value="{{ old('image') }}"  multiple>
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" required>
+                <input class="file-path validate" type="text">
             </div>
         </div>
         <div class="col s12">

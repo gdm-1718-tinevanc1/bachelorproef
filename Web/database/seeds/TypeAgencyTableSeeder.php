@@ -47,7 +47,8 @@ class TypeAgencyTableSeeder extends Seeder
 
 
 
-            ['name' => 'WMO', 'description' => 'WMO', 'country_id' => 2]
+            ['name' => 'WMO', 'description' => 'WMO', 'country_id' => 2],
+            ['name' => 'Geen', 'description' => 'Geen terugbetaling', 'country_id' => 1]
 
         ];
 

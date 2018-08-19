@@ -1,12 +1,14 @@
 <div class="{{disease.shorttitle}}">
-    <h1 class="title">Wat is {{disease.title}}?</h1>
+
+    <h1 *ngIf="disease.shorttitle == 'Andere'" class="title">Wat zijn {{disease.title}}?</h1>
+    <h1 *ngIf="disease.shorttitle != 'Andere'" class="title">Wat is {{disease.title}}?</h1>
     <ul class="collapsible" data-collapsible="accordion">
         <li>
             <div class="collapsible-header active" (click)="collapsible($event)">Info
                 <i class="fa fa-caret-down right"></i>
             </div>
             <div class="collapsible-body">
-                <span> {{disease.description}}</span>
+                <span [innerHTML]="disease.description"></span>
             </div>
         </li>
     </ul>
@@ -24,20 +26,22 @@
                                     <i class="fa fa-caret-down right"></i>
                                 </div>
                                 <div class="collapsible-body">
-                                    {{type.info}}
+                                        <span [innerHTML]="type.info"></span>
                                 </div>
                             </li>
                             <li *ngIf="type.criteria">
                                 <div class="collapsible-header" (click)="collapsible($event)">Criteria
                                     <i class="fa fa-caret-down right"></i>
                                 </div>
-                                <div class="collapsible-body">{{type.criteria}}</div>
+                                <div class="collapsible-body">
+                                        <span [innerHTML]="type.criteria"></span></div>
                             </li>
                             <li *ngIf="type.diagnose">
                                 <div class="collapsible-header" (click)="collapsible($event)">Diagnose
                                     <i class="fa fa-caret-down right"></i>
                                 </div>
-                                <div class="collapsible-body">{{type.diagnose}}</div>
+                                <div class="collapsible-body">
+                                        <span [innerHTML]="type.diagnose"></span></div>
                             </li>
                         </ul>
                     </div>

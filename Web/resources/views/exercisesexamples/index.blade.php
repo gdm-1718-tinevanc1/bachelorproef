@@ -30,7 +30,7 @@
                 </td>
 
                 <td>
-                    {{ $exercisesexample->description }}
+                    {{ str_limit($exercisesexample->description, $limit = 50, $end = '...') }}
                 </td>
 
                  <td>

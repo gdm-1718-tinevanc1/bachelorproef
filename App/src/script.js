@@ -1,5 +1,3 @@
-console.log('test');
-
 $('.dropdown-button').dropdown({
     inDuration: 300,
     outDuration: 225,

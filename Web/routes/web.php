@@ -17,6 +17,8 @@ Route::get('/', 'HomeController@index');
 Route::resource('diseases', 'DiseasesController');
 Route::get('diseases/{disease}/delete', 'DiseasesController@delete');
 
+Route::get('type_diseases/{disease}/create', 'TypeDiseasesController@create');
+// Route::post('type_diseases/{disease}', 'TypeDiseasesController@store');
 Route::resource('type_diseases', 'TypeDiseasesController');
 Route::get('type_diseases/{type_disease}/delete', 'TypeDiseasesController@delete');
 Route::get('type_diseases/deleteImage/{image}', 'TypeDiseasesController@deleteImage');
@@ -79,7 +81,6 @@ Route::get('types/agencies/{type_agency}/delete', 'TypeAgenciesController@delete
 
 Route::get('auth/logout', 'Auth\LoginController@logout');
 
-// Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index');
 
 Auth::routes();

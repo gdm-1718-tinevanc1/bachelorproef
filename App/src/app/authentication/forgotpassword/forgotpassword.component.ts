@@ -50,7 +50,6 @@ export class ForgotpasswordComponent implements OnInit {
       this.form.reset();
     } else {
       this.formErrors = this.FormService.validateForm(this.form, this.formErrors, false)
-      console.log(this.formErrors);
     }
   }
 

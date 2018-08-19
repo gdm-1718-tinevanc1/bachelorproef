@@ -121,6 +121,7 @@ export class ProfileService {
 
   }
 
+
   private put(creds) {
     let httpOptions = new Headers({
       'Content-Type': 'application/json'
@@ -131,23 +132,64 @@ export class ProfileService {
   }
 
 
+
   public softdelete(id) {
-    let httpOptions = new Headers({
-      'Content-Type': 'application/json'
-    });
-    
     return this._httpClient.delete<IProfile>(`${ this._apiEndPoint + '/' + id }` )
 
   }
 
   public forcedelete(id) {
-    let httpOptions = new Headers({
-      'Content-Type': 'application/json'
-    });
-    
     return this._httpClient.delete<IProfile>(`${ this._apiEndPoint + '/destroy/' + id }` )
 
   }
+
+//   private post(creds) {
+//     const httpOptions = {
+//       headers: new HttpHeaders({
+//         'Content-Type':  'application/x-www-form-urlencoded',
+//       })
+//     };
+
+//     var body = JSON.stringify(creds);
+    
+//     return this._httpClient.post<IProfile>(`${ this._apiEndPoint }`, body, httpOptions)
+
+//   }
+
+//  private put(creds) {
+//     const httpOptions = {
+//       headers: new HttpHeaders({
+//         'Content-Type':  'text/plain',
+//       })
+//     };
+
+//     var body = JSON.stringify(creds);
+
+    
+//     return this._httpClient.put<IProfile>(`${ this._apiEndPoint + '/' + creds.id }`, body, httpOptions )
+
+//   }
+    // public softdelete(id) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+
+  //   return this._httpClient.delete<IProfile>(`${ this._apiEndPoint + '/' + id }`, httpOptions )
+
+  // }
+
+  // public forcedelete(id) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+
+  //   return this._httpClient.delete<IProfile>(`${ this._apiEndPoint + '/destroy/' + id }`, httpOptions )
+
+  // }
 
 }
 

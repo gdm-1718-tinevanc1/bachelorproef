@@ -37,6 +37,19 @@ export class PractitionerService {
     
     return this._httpClient.post<IAskPractitioner>(`${ this._apiEndPointAsk }`, JSON.stringify(askPractitioner), httpOptions)
   }
+
+  // postAskPractitioner(askPractitioner) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+
+  //   var body = JSON.stringify(askPractitioner);
+
+  //   return this._httpClient.post<IAskPractitioner>(`${ this._apiEndPointAsk }`, body, httpOptions)
+  // }
+
 }
 
 

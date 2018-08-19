@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
@@ -12433,7 +12433,7 @@ if (typeof usersByRoles !== "undefined") {
 /* 5 */
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed: ModuleBuildError: Module build failed: Error: ENOENT: no such file or directory, open '/Users/tine/Sites/bachelorproef2/Web/node_modules/css-loader/lib/css-base.js'\n    at runLoaders (/Users/tine/Sites/bachelorproef2/Web/node_modules/webpack/lib/NormalModule.js:195:19)\n    at /Users/tine/Sites/bachelorproef2/Web/node_modules/loader-runner/lib/LoaderRunner.js:364:11\n    at /Users/tine/Sites/bachelorproef2/Web/node_modules/loader-runner/lib/LoaderRunner.js:200:19\n    at /Users/tine/Sites/bachelorproef2/Web/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:70:14\n    at process._tickCallback (internal/process/next_tick.js:150:11)");
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

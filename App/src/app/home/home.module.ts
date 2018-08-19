@@ -5,12 +5,14 @@ import { HomeComponent } from './home.component';
 import { AppRoutingModule } from './../app-routing.module';
 import { ContactService } from './shared/service/contact.service';
 import { NewsService } from '../news/shared/service/news.service';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 @NgModule({
   imports: [
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   declarations: [HomeComponent],
   providers: [ContactService, NewsService]

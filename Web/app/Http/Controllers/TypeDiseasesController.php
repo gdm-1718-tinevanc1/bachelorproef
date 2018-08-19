@@ -2,7 +2,9 @@
 
 namespace EDS_site\Http\Controllers;
 
+use EDS_site\Models\Image;
 use EDS_site\Models\TypeDisease;
+use EDS_site\Models\Disease;
 use Illuminate\Http\Request;
 
 class TypeDiseasesController extends Controller
@@ -18,13 +20,15 @@ class TypeDiseasesController extends Controller
     }
 
 
-    public function create(){
+    public function create($id){
 
-        return view('type_diseases.create');
+        return view('type_diseases.create', compact('id'));
     }
 
 
-    public function store(Disease $typedisease){
+    public function store($id, Request $request){
+
+        $disease = Disease::find($id);
 
         $this->validate(request(), [
             'name' => 'required'
@@ -36,11 +40,12 @@ class TypeDiseasesController extends Controller
             ]);
         }
 
-        TypeDisease::create([
+        $typedisease = TypeDisease::create([
             'name' => request('name'),
             'info' => request('info'),
             'criteria' => request('criteria'),
             'diagnose' => request('diagnose'),
+            'disease_id' => $disease->id
         ]);
 
         if( $request->hasFile('image')) {
@@ -59,11 +64,12 @@ class TypeDiseasesController extends Controller
         }
 
         session()->flash('message', 'Je hebt een aandoening type toegevoegd.');
-        return redirect('/diseases/'. $typedisease->id);
+        return redirect('/diseases/'. $disease->id);
     }
 
     public function edit($id)
     {
+        
         $type_disease = TypeDisease::find($id);
         return view('type_diseases.edit', compact('type_disease'));
 
@@ -99,7 +105,7 @@ class TypeDiseasesController extends Controller
 
                 Image::create([
                     'url' => $imageUrl,
-                    'type_disease_id' => $id
+                    'type_disease_id' => $typedisease->id
                 ]);
             }
         }

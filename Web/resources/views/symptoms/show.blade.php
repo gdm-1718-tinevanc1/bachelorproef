@@ -7,7 +7,7 @@
     <h1>{{ $symptom->title }}</h1>
    
     <h5>Info:</h5>
-    {{ $symptom->info}}
+    {!!html_entity_decode( $symptom->info)!!}
 
     <h5>Bronnen:</h5>
     @foreach($symptom->sources as $source)

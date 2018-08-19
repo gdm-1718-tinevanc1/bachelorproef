@@ -70,8 +70,16 @@ export class AuthenticationService {
     return this._httpClient.post<IUser>(`${ this._apiEndPoint_register }`, JSON.stringify(creds), this.httpOptions).subscribe(
       result => {
         this.user.user = result;
-        localStorage.setItem('id', result[0].id);
-        localStorage.setItem('role', result[0].roles[0].name);
+        console.log(result);
+        localStorage.setItem('id', result.id);
+
+        if(creds.rolePractitioner == true){
+          localStorage.setItem('role', 'Behandelaar');
+        } else{
+          localStorage.setItem('role', 'Patiënt');
+        }
+      
+        // localStorage.setItem('role', result[0].roles[0].name);
 
         this.user.authenticated = true;
         window.location.reload();
@@ -89,7 +97,6 @@ export class AuthenticationService {
     if(jwt) {
         this.user.authenticated = true;
         this.user.role = localStorage.getItem('role');
-        console.log(this.user.role);
     }
     else {
         this.user.authenticated = false;
@@ -97,6 +104,7 @@ export class AuthenticationService {
     }
   }
 
+  
 
   forgotpassword(creds) {
     const httpOptions = {
@@ -108,6 +116,7 @@ export class AuthenticationService {
     return this._httpClient.post(`${ this._apiEndPointForgotPassword }`, JSON.stringify(creds), httpOptions)
   }
 
+
   resetpassword(creds){
     const httpOptions = {
       headers: new HttpHeaders({
@@ -117,6 +126,102 @@ export class AuthenticationService {
     
     return this._httpClient.post(`${ this._apiEndPointResetPassword }`, JSON.stringify(creds), httpOptions)
   }
+
+
+  // login(creds) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+
+  //   var body = JSON.stringify(creds);
+
+  //   return this._httpClient.post<IUser>(`${ this._apiEndPoint }`, body, httpOptions).subscribe(
+  //     result => {
+  //       this.user.user = result;
+  //       if(this.user.user[0].id === undefined || this.user.user[0].id === null){
+  //         this.user.errormessage =  "De gebruikersnaam of wachtwoord die je hebt ingegeven is niet correct." ;
+  //         this._flashMessagesService.show('De gebruikersnaam of wachtwoord die je hebt ingegeven is niet correct.', { cssClass: 'alert-error', timeout: 3000 });
+  //       } else {
+  //         localStorage.setItem('id', result[0].id);
+  //         localStorage.setItem('role', result[0].roles[0].name);
+  //         this.user.authenticated = true;
+  //         this.user.role = result[0].roles[0].name;
+  //         window.location.reload();
+  //         this.router.navigate(['']);
+  //       }
+  //     },
+  //     err => {
+  //       this._flashMessagesService.show('Er is een probleem, probeer opnieuw.', { cssClass: 'alert-error', timeout: 3000 });
+  //       console.log("Error occured:", err);
+  //     }
+  //   )
+  // }
+
+
+
+  // register (creds) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+
+
+  //   var body = JSON.stringify(creds);
+
+
+  //   return this._httpClient.post<IUser>(`${ this._apiEndPoint_register }`, body, httpOptions).subscribe(
+  //     result => {
+  //       this.user.user = result;
+
+  //       localStorage.setItem('id', result.id);
+
+  //       if(creds.rolePractitioner == true){
+  //         localStorage.setItem('role', 'Behandelaar');
+  //       } else{
+  //         localStorage.setItem('role', 'Patiënt');
+  //       }
+
+  //       this.user.authenticated = true;
+  //       window.location.reload();
+  //       this.router.navigate(['']);
+  //     },
+  //     err => {
+  //       console.log("Error occured", err);
+  //       this._flashMessagesService.show('Er is een probleem, probeer opnieuw.', { cssClass: 'alert-error', timeout: 3000 });
+  //     }
+  //   )
+  // }
+
+
+  // forgotpassword(creds) {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+
+  //   var body = JSON.stringify(creds);
+
+    
+  //   return this._httpClient.post(`${ this._apiEndPointForgotPassword }`, body, httpOptions)
+  // }
+
+
+
+  // resetpassword(creds){
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type':  'application/x-www-form-urlencoded',
+  //     })
+  //   };
+  //   let body = JSON.stringify(creds);
+
+    
+  //   return this._httpClient.post(`${ this._apiEndPointResetPassword }`, body, httpOptions)
+  // }  
 
 }
 

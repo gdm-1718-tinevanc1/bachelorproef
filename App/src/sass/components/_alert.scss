@@ -3,7 +3,7 @@
     color: #ffffff;
     height: 45px;
     width: 80%;
-    position: absolute;
+    position: fixed;
     z-index: 999;
     bottom: 40px;
     text-align: center;
@@ -11,7 +11,7 @@
     margin-left: 10%;
 
     .close{
-        float: right;
+        text-align: right;
         margin-top: -42px;
         margin-right: 10px;
         font-size: 1.2rem;

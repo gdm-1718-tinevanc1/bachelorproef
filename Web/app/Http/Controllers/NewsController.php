@@ -3,6 +3,7 @@
 namespace EDS_site\Http\Controllers;
 
 use EDS_site\Models\News;
+use EDS_site\Models\Device; 
 use EDS_site\Models\TypeNew;
 use Illuminate\Http\Request;
 

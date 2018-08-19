@@ -29,8 +29,9 @@
           <label for="description">Beschrijving</label>
         </div>
 
+
+        <label for="characDiseases">Kenmerken</label>
         <div id="dynamic_field" class="input-field col s12">  
-            <label for="characDiseases">Kenmerken</label>
             @foreach($disease->characDiseases as $key => $charac)
                <div id="row{{$key}}"> <input type="text" class="form-control" id="characDiseases" value="{{$charac->description}}" name="characDiseases[]">
                 <button type="button" name="remove" id="{{$key}}" class="btn btn-danger btn_remove right"><i class="fa fa-minus"></i></button></div>

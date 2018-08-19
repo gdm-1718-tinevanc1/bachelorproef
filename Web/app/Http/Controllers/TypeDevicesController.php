@@ -2,6 +2,7 @@
 
 namespace EDS_site\Http\Controllers;
 
+use EDS_site\Models\Image;
 use EDS_site\Models\TypeDevice;
 use Illuminate\Http\Request;
 
